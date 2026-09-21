@@ -296,7 +296,7 @@ section {
   font-size: 17px;
   line-height: 1.72;
   color: var(--ink2);
-  max-width: 63ch;
+  max-width: 660px;
   margin: 0 0 22px;
   text-align: justify;
   text-justify: inter-word;
