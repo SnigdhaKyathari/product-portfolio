@@ -1,1 +1,11 @@
-{"version":4,"routes":{"/work/flowstate":{},"/work/reframe":{},"/work/finbuddy":{},"/work/scrf":{},"/work/tate":{}},"dynamicRoutes":{"/work/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/work/[slug]","routeRegex":"^\\/work\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"b4ae97280a496e672f714fa41e256330","previewModeSigningKey":"ed826a666b0b5ee105f2e085b4ab5c2ef6d0a82b26ec366589b1bea0ed53ac54","previewModeEncryptionKey":"f1b93cd05b1fdb23bf84a164d8b974cbc1e26c8e24964dafff12660c9955dfae"}}
+{
+  "version": 4,
+  "routes": {},
+  "dynamicRoutes": {},
+  "notFoundRoutes": [],
+  "preview": {
+    "previewModeId": "4fc00697a6de75ecd8346ed00b7069e2",
+    "previewModeSigningKey": "3bd2f7e3518085bf89c8405756d33b103cd765f50e5f5d14837a3137251a109e",
+    "previewModeEncryptionKey": "0cc4b51c4740b3951f66cee9d67a6491b180ae5d78c8d2626990cd12388bb57d"
+  }
+}

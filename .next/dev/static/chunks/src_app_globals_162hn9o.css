@@ -302,7 +302,7 @@ section {
   text-justify: inter-word;
   -webkit-hyphens: auto;
   hyphens: auto;
-  max-width: 63ch;
+  max-width: 660px;
   margin: 0 0 22px;
   font-size: 17px;
   line-height: 1.72;
