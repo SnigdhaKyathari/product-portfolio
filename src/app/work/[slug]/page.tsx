@@ -1,59 +1,32 @@
-'use client';
-
 import { PROJECTS } from '@/content';
-import { useEffect } from 'react';
-import { useParams } from 'next/navigation';
+import type { Metadata } from 'next';
 
-export default function CaseStudy() {
-  const params = useParams<{ slug: string }>();
-  const slug = Array.isArray(params.slug) ? params.slug[0] : params.slug;
+export function generateStaticParams() {
+  return PROJECTS.map((project) => ({
+    slug: project.slug,
+  }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
   const project = PROJECTS.find((p) => p.slug === slug);
 
-  useEffect(() => {
-    // Setup rail navigation for case study
-    const rail = document.getElementById('rail');
-    if (!rail || !project) return;
+  if (!project) {
+    return { title: 'Project Not Found' };
+  }
 
-    const sectionItems = [`<a href="/"><span class="tick"></span>← All projects</a>`];
+  return {
+    title: `${project.name} — ${project.sub}`,
+    description: project.sub,
+  };
+}
 
-    const blockSections = (project.blocks || []).filter((b: any) => b.h).map((b: any) => ({
-      id: (b.h || '').toLowerCase().replace(/[^a-z0-9]+/g, '-'),
-      label: b.h,
-    }));
-
-    blockSections.forEach((section: any) => {
-      sectionItems.push(
-        `<a href="#${section.id}" class="rail-link" data-section="${section.id}"><span class="tick"></span>${section.label}</a>`
-      );
-    });
-
-    rail.innerHTML = sectionItems.join('');
-
-    // Scroll spy
-    const handleScroll = () => {
-      const scrollMargin = window.innerHeight * 0.12 + 78;
-      let currentSection = '';
-
-      blockSections.forEach((section: any) => {
-        const el = document.getElementById(section.id);
-        if (el && el.getBoundingClientRect().top <= scrollMargin) {
-          currentSection = section.id;
-        }
-      });
-
-      document.querySelectorAll('.rail-link').forEach((link) => {
-        link.classList.toggle('active', link.getAttribute('data-section') === currentSection);
-      });
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [project]);
+export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = PROJECTS.find((p) => p.slug === slug);
 
   if (!project) {
-    return <div style={{ padding: '20px' }}>Project not found</div>;
+    return <div>Project not found</div>;
   }
 
   return (
@@ -105,7 +78,7 @@ export default function CaseStudy() {
       {project.blocks?.map((block: any, i: number) => {
         const id = (block.h || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return (
-          <div key={i} id={id} className="blk reveal">
+          <div key={i} id={id} className="blk reveal" data-section={id}>
             {block.h && <h2>{block.h}</h2>}
             {block.p?.map((p: string, j: number) => <p key={j} dangerouslySetInnerHTML={{ __html: p }} />)}
             {block.pull && <div className="pull" dangerouslySetInnerHTML={{ __html: block.pull }} />}
@@ -180,6 +153,48 @@ export default function CaseStudy() {
           Let's connect →
         </a>
       </div>
+
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            (function() {
+              const rail = document.getElementById('rail');
+              if (!rail) return;
+
+              const sections = Array.from(document.querySelectorAll('[data-section]')).map(el => ({
+                id: el.getAttribute('data-section'),
+                label: el.querySelector('h2')?.textContent || '',
+                el: el
+              })).filter(s => s.label);
+
+              const sectionItems = ['<a href="/"><span class="tick"></span>← All projects</a>'];
+              sections.forEach(section => {
+                sectionItems.push('<a href="#' + section.id + '" class="rail-link" data-section="' + section.id + '"><span class="tick"></span>' + section.label + '</a>');
+              });
+
+              rail.innerHTML = sectionItems.join('');
+
+              const handleScroll = () => {
+                const scrollMargin = window.innerHeight * 0.12 + 78;
+                let currentSection = '';
+
+                sections.forEach(section => {
+                  if (section.el && section.el.getBoundingClientRect().top <= scrollMargin) {
+                    currentSection = section.id;
+                  }
+                });
+
+                document.querySelectorAll('.rail-link').forEach(link => {
+                  link.classList.toggle('active', link.getAttribute('data-section') === currentSection);
+                });
+              };
+
+              window.addEventListener('scroll', handleScroll, { passive: true });
+              handleScroll();
+            })();
+          `,
+        }}
+      />
     </>
   );
 }
