@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//usr/local/bin/**)",
+      "Read(//opt/homebrew/bin/**)",
+      "Read(//usr/**)",
+      "Bash(npm install *)",
+      "Bash(mkdir -p src/app src/components)",
+      "Bash(cp portfolio-bundle/content.ts src/)",
+      "Bash(cp -r portfolio-bundle/public .)",
+      "Bash(npm run *)",
+      "Bash(pkill -f \"npm run dev\")",
+      "Bash(curl -s http://localhost:3000)",
+      "Bash(curl -s http://localhost:3000/work/flowstate)",
+      "Bash(curl -s http://localhost:3000/work/reframe)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Bash(git add *)",
+      "Bash(git commit -m 'Initial portfolio site commit *)"
+    ]
+  }
+}

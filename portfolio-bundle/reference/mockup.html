@@ -1,0 +1,901 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&display=swap');
+
+:root{
+  --bg:#FBFBF9; --panel:#FFFFFF; --ink:#0B0B0B; --ink2:#3F3F46; --ink3:#71717A;
+  --line:#E7E7E3; --line2:#EFEFEB; --sig:#C8102E; --radius:8px;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --display:Newsreader,Georgia,"Times New Roman",serif;
+  --grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;line-height:1.6}
+body::before{content:"";position:fixed;inset:0;background-image:var(--grain);opacity:.16;mix-blend-mode:multiply;pointer-events:none;z-index:9999}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+
+.topbar{position:sticky;top:0;z-index:50;background:rgba(251,251,249,.86);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.topbar-in{max-width:1180px;margin:0 auto;padding:13px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--display);font-weight:500;letter-spacing:-.012em;font-size:16.5px;text-decoration:none;display:flex;align-items:center;gap:9px}
+.brand .dot{width:7px;height:7px;border-radius:50%;background:var(--sig);flex:none}
+.toplinks{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.tl{font-family:var(--mono);font-size:11px;text-decoration:none;color:var(--ink2);border:1px solid var(--line);background:#fff;padding:6px 11px;border-radius:6px;transition:.18s;white-space:nowrap}
+.tl:hover{border-color:var(--ink);color:var(--ink)}
+.tl.primary{background:#0A66C2;color:#fff;border-color:#0A66C2}
+.tl.primary:hover{background:#08508F;border-color:#08508F}
+
+.shell{max-width:1180px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:168px 1fr;gap:52px;align-items:start}
+.rail{position:sticky;top:72px;padding:46px 0;font-family:var(--mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;display:flex;flex-direction:column;gap:13px}
+.rail a{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--ink3);transition:.2s}
+.rail .tick{width:14px;height:1px;background:#D8D8D2;transition:.25s;flex:none}
+.rail a:hover{color:var(--ink)}
+.rail a.active{color:var(--ink);font-weight:500}
+.rail a.active .tick{width:26px;background:var(--sig)}
+.main{padding:46px 0 64px;min-width:0}
+
+section{scroll-margin-top:78px}
+.sechead{display:flex;align-items:baseline;gap:12px;margin:0 0 26px;padding-bottom:11px;border-bottom:1px solid var(--line)}
+.sechead .num{font-family:var(--mono);font-size:10.5px;color:var(--sig);letter-spacing:.08em}
+.sechead h2{font-size:13px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.13em;color:var(--ink3);margin:0;font-weight:500}
+
+/* hero */
+.hero{padding-bottom:70px}
+.hero-top{display:flex;gap:26px;align-items:flex-start;margin-bottom:24px;flex-wrap:wrap}
+.photo{width:124px;height:124px;border-radius:10px;border:1px solid var(--line);object-fit:cover;flex:none}
+.hero h1{font-family:var(--display);font-size:clamp(33px,4.7vw,48px);line-height:1.05;letter-spacing:-.018em;margin:2px 0 8px;font-weight:500}
+.kicker{font-family:var(--mono);font-size:12px;color:var(--ink3);margin:0 0 14px}
+.avail{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:10.5px;color:var(--ink2);background:#fff;border:1px solid var(--line);padding:5px 10px;border-radius:999px}
+.avail .pulse{width:6px;height:6px;border-radius:50%;background:#16A34A;box-shadow:0 0 0 0 rgba(22,163,74,.5);animation:p 2.4s infinite}
+@keyframes p{0%{box-shadow:0 0 0 0 rgba(22,163,74,.45)}70%{box-shadow:0 0 0 7px rgba(22,163,74,0)}100%{box-shadow:0 0 0 0 rgba(22,163,74,0)}}
+.lede{font-size:17px;line-height:1.72;color:var(--ink2);max-width:63ch;margin:0 0 22px}
+.lede strong{color:var(--ink);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:22px}
+.chip{font-family:var(--mono);font-size:10.5px;padding:5px 10px;border:1px solid var(--line);background:#fff;border-radius:5px;color:var(--ink2)}
+.chip b{color:var(--sig);font-weight:500}
+.introlinks{display:flex;gap:9px;flex-wrap:wrap}
+
+/* edit mode */
+.edbtn{cursor:pointer}
+.edbtn.on{background:#15803D;border-color:#15803D;color:#fff}
+body.editing [data-k]{outline:1px dashed #C9C9C2;outline-offset:3px;border-radius:2px}
+body.editing [data-k]:hover{outline-color:var(--sig)}
+body.editing [data-k]:focus{outline:2px solid var(--sig);outline-offset:3px;background:#FFFDF5}
+body.editing a{cursor:text}
+.edbar{position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:200;background:var(--ink);color:#fff;border-radius:999px;padding:9px 8px 9px 18px;display:none;align-items:center;gap:14px;box-shadow:0 8px 28px rgba(0,0,0,.25);font-family:var(--mono);font-size:11px}
+body.editing .edbar{display:flex}
+.edbar .st{opacity:.75}
+.edbar button{font-family:var(--mono);font-size:11px;border:none;border-radius:999px;padding:6px 13px;cursor:pointer;background:#fff;color:var(--ink)}
+.edbar button.ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35)}
+
+
+/* justified body copy */
+.lede,.blk p,.blk li,.cs-sub,.story,.job li,.card p,.decision p,.award p,
+.persona .pq,.cmp .cc p,.win .txt p,.jobmeta .rl{
+  text-align:justify;
+  text-justify:inter-word;
+  hyphens:auto;
+  -webkit-hyphens:auto;
+  -ms-hyphens:auto;
+}
+/* keep short or structural text ragged-right */
+.blk > h2,.sechead h2,figcaption,.decision .tradeoff,.win .lab,.award .wh,
+.ed p,.ed h3,.tag,.chip,.pill,.res .n,.res .t,.cmp .ch,.cmp .cc h5,
+.persona .pn,.persona .pa,.fact .k,.fact .v,.jobL .co,.jobL .unit,.jobL .wh{
+  text-align:left;
+  hyphens:manual;
+}
+
+/* project cards */
+.cards{display:flex;flex-direction:column;gap:18px}
+.card{display:grid;grid-template-columns:300px 1fr;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;text-decoration:none;transition:.22s ease;cursor:pointer}
+.card:hover{border-color:#CFCFC8;transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.06)}
+.card .shot{background:#F5F5F1;border-right:1px solid var(--line);overflow:hidden;position:relative}
+.card .shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.card .body{padding:24px 26px;min-height:238px;display:flex;flex-direction:column;justify-content:center}
+.tagrow{display:flex;gap:7px;align-items:center;margin-bottom:9px;flex-wrap:wrap}
+.tag{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--sig)}
+.tag.muted{color:var(--ink3)}
+.tag.sep{color:#D4D4CE}
+.card h3{font-family:var(--display);font-size:22.5px;letter-spacing:-.012em;margin:0 0 7px;font-weight:500}
+.card p{font-size:13.5px;line-height:1.65;color:var(--ink2);margin:0 0 14px;max-width:58ch}
+.cardfoot{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.cta{font-family:var(--mono);font-size:11px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--sig);padding-bottom:2px}
+.cta.ghost{border-bottom-color:var(--line);color:var(--ink3)}
+
+/* experience */
+.xp{display:flex;flex-direction:column;gap:18px}
+.job{background:#fff;border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:258px 1fr}
+.jobL{padding:26px 24px;border-right:1px solid var(--line2);background:#FCFCFA;border-radius:var(--radius) 0 0 var(--radius)}
+.jobR{padding:24px 26px;min-width:0}
+.logo{width:52px;height:52px;border-radius:10px;flex:none;display:flex;align-items:center;justify-content:center;overflow:hidden;border:1px solid rgba(0,0,0,.08);margin-bottom:14px}
+.logo img{width:100%;height:100%;object-fit:cover}
+.jobL .co{font-family:var(--display);font-size:22px;font-weight:500;letter-spacing:-.012em;margin:0 0 5px}
+.jobL .unit{font-family:var(--mono);font-size:11.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--sig);margin-bottom:12px;line-height:1.5}
+.jobL .rl{font-size:15px;color:var(--ink);margin:0 0 11px;line-height:1.45;font-weight:500}
+.jobL .wh{font-family:var(--mono);font-size:12px;color:var(--ink3);line-height:1.75}
+.jobL .promo{margin-top:12px;font-family:var(--mono);font-size:10.5px;color:var(--ink2);background:#fff;border:1px solid var(--line);border-radius:5px;padding:6px 9px;line-height:1.5;display:inline-block}
+.story{font-size:14.5px;line-height:1.72;color:var(--ink2);margin:0 0 16px;max-width:640px}
+.win{background:#FCFCFA;border:1px solid var(--line);border-left:2px solid var(--sig);border-radius:6px;padding:14px 16px;margin-bottom:16px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+.win .big{font-family:var(--display);font-size:29px;font-weight:600;letter-spacing:-.015em;line-height:1;color:var(--ink);white-space:nowrap}
+.win .txt{flex:1;min-width:210px}
+.win .lab{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.1em;color:var(--sig);margin-bottom:4px}
+.win .txt p{margin:0;font-size:13px;line-height:1.6;color:var(--ink2)}
+.job ul{margin:0;padding-left:17px;display:flex;flex-direction:column;gap:7px}
+.job li{font-size:13.5px;line-height:1.62;color:var(--ink2);max-width:640px}
+.jobphoto{margin:16px 0 0}
+.jobphoto{max-width:470px}
+.jobphoto img{border-radius:6px;border:1px solid var(--line);width:100%;max-height:250px;object-fit:cover;object-position:center 62%}
+.jobphoto figcaption{font-family:var(--mono);font-size:10px;color:var(--ink3);margin-top:7px}
+
+/* awards */
+.awards{display:flex;flex-direction:column;gap:14px}
+.award{background:#fff;border:1px solid var(--line);border-radius:var(--radius);display:grid;grid-template-columns:1fr;overflow:hidden}
+.award.withphoto{grid-template-columns:260px 1fr}
+.award .aw-body{padding:20px 22px;min-height:172px;display:flex;flex-direction:column;justify-content:center}
+.award .aw-ph{background:#F5F5F1;border-right:1px solid var(--line);overflow:hidden;position:relative}
+.award h3{font-family:var(--display);margin:0 0 5px;font-size:17.5px;letter-spacing:-.01em;font-weight:500}
+.award p{margin:0;font-size:13.5px;line-height:1.62;color:var(--ink2)}
+.award .wh{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-bottom:6px}
+.award .lk{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--sig);padding-bottom:2px}
+.award img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* education */
+.edu{display:flex;flex-direction:column;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.ed{background:#fff;padding:16px 18px;display:flex;gap:15px;align-items:center;flex-wrap:wrap}
+.ed .logo{width:40px;height:40px;font-size:13px}
+.ed .t{flex:1;min-width:200px}
+.ed h3{font-family:var(--display);margin:0 0 2px;font-size:17px;letter-spacing:-.01em;font-weight:500}
+.ed p{margin:0;font-size:13px;color:var(--ink2)}
+.ed .when{font-family:var(--mono);font-size:10.5px;color:var(--ink3);white-space:nowrap}
+.eduright{display:flex;flex-direction:column;align-items:flex-end;gap:4px;text-align:right}
+.eduloc{font-family:var(--mono);font-size:10.5px;color:var(--ink2);white-space:nowrap}
+.ed .flag{display:inline-block;font-family:var(--mono);font-size:9.5px;color:var(--ink3);border:1px solid var(--line);background:#FAFAF8;padding:2px 7px;border-radius:4px;margin-top:5px}
+
+/* skills */
+.skillgroup{margin-bottom:22px}
+.skillgroup h3{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.11em;color:var(--ink3);margin:0 0 11px;font-weight:500}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:999px;padding:6px 15px;font-size:13px;color:var(--ink);transition:.18s}
+.pill:hover{border-color:#CFCFC8;transform:translateY(-1px)}
+.closing{margin-top:34px;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px 28px;display:flex;justify-content:space-between;gap:22px;align-items:center;flex-wrap:wrap}
+.closing h3{margin:0 0 5px;font-size:19px;letter-spacing:-.025em}
+.closing p{margin:0;font-size:13.5px;color:var(--ink2)}
+
+/* case study */
+.back{font-family:var(--mono);font-size:11px;color:var(--ink3);text-decoration:none;display:inline-flex;gap:7px;align-items:center;margin-bottom:26px}
+.back:hover{color:var(--ink)}
+.cs-hero h1{font-family:var(--display);font-size:clamp(31px,4.3vw,44px);letter-spacing:-.018em;margin:8px 0 10px;line-height:1.08;font-weight:500}
+.cs-sub{font-size:16.5px;line-height:1.68;color:var(--ink2);max-width:660px;margin:0 0 22px}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(135px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:34px;max-width:860px}
+.fact{background:#fff;padding:14px 16px}
+.fact .k{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--ink3);margin-bottom:5px}
+.fact .v{font-size:13.5px;color:var(--ink);line-height:1.45}
+.blk{margin-bottom:42px}
+.blk > h2{font-size:12px;font-family:var(--mono);text-transform:uppercase;letter-spacing:.13em;color:var(--sig);margin:0 0 14px;font-weight:500}
+.blk p{font-size:15px;line-height:1.75;color:var(--ink2);max-width:660px;margin:0 0 16px}
+.blk p strong{color:var(--ink);font-weight:600}
+.blk ul{margin:0 0 16px;padding-left:18px;display:flex;flex-direction:column;gap:9px;max-width:660px}
+.blk li{font-size:15px;line-height:1.7;color:var(--ink2)}
+.blk li strong{color:var(--ink);font-weight:600}
+.pull{font-family:var(--display);font-weight:500;border-left:2px solid var(--sig);padding:3px 0 3px 20px;margin:26px 0;font-size:20px;line-height:1.55;color:var(--ink);max-width:620px;letter-spacing:-.008em}
+.decision{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;margin-bottom:13px;max-width:760px}
+.decision h4{font-family:var(--display);font-weight:500;margin:0 0 7px;font-size:17px;letter-spacing:-.008em}
+.decision p{font-size:13.5px;margin:0;line-height:1.66}
+.decision .tradeoff{margin-top:9px;font-family:var(--mono);font-size:11px;color:var(--ink3);border-top:1px dashed var(--line);padding-top:9px}
+.decision .tradeoff b{color:var(--sig);font-weight:500}
+figure{margin:0 0 26px;max-width:520px}
+figure.wide{max-width:660px}
+figure img{border:1px solid var(--line);border-radius:6px;background:#fff}
+figcaption{font-family:var(--mono);font-size:10.5px;color:var(--ink3);margin-top:9px;line-height:1.5}
+.figgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:660px}
+.figgrid figure{max-width:none}
+.results{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:20px;max-width:800px}
+.res{background:#fff;padding:15px 17px;display:grid;grid-template-columns:1fr auto auto;gap:14px;align-items:center}
+.res .n{font-size:13.5px;color:var(--ink)}
+.res .t{font-family:var(--mono);font-size:10.5px;color:var(--ink3);white-space:nowrap}
+.res .a{font-family:var(--mono);font-size:13px;font-weight:500;white-space:nowrap;padding:3px 9px;border-radius:4px}
+.res .a.hit{color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0}
+.res .a.miss{color:var(--sig);background:#FEF2F2;border:1px solid #FECACA}
+video{border:1px solid var(--line);border-radius:6px;background:#000;width:100%;max-width:440px;display:block}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:26px;max-width:820px}
+.cmp .ch{background:#FAFAF8;padding:11px 16px;font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink3)}
+.cmp .ch.b{color:var(--sig)}
+.cmp .cc{background:#fff;padding:14px 16px}
+.cmp .cc h5{margin:0 0 5px;font-size:13px;letter-spacing:-.01em}
+.cmp .cc p{margin:0;font-size:12.5px;line-height:1.6;color:var(--ink2);max-width:none}
+.stepdown{width:100%;max-width:820px;border-collapse:collapse;border:1px solid var(--line);margin-bottom:26px;background:#fff}
+.stepdown th,.stepdown td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line2);font-size:13px}
+.stepdown th{font-family:var(--mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.09em;color:var(--ink3);background:#FAFAF8;font-weight:500}
+.stepdown td:first-child{font-family:var(--mono);font-size:11px;color:var(--ink3)}
+.stepdown tr:last-child td{border-bottom:none;background:#FCFCFA}
+.stepdown tr:last-child td b{color:var(--sig)}
+.note{font-family:var(--mono);font-size:11px;line-height:1.6;color:#92400E;background:#FFFBEB;border:1px solid #FDE68A;border-radius:6px;padding:11px 14px;margin:0 0 20px}
+.personas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;margin-bottom:26px;max-width:820px}
+.persona{background:#fff;padding:16px 18px}
+.persona .pn{font-family:var(--display);font-size:16px;font-weight:500;letter-spacing:-.008em;margin-bottom:3px}
+.persona .pa{font-family:var(--mono);font-size:10px;color:var(--sig);text-transform:uppercase;letter-spacing:.08em;margin-bottom:9px}
+.persona .pq{font-size:12.5px;line-height:1.6;color:var(--ink2);font-style:italic}
+.reveal{opacity:0;transform:translateY(14px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.3,1)}
+@media (prefers-reduced-motion:reduce){.reveal,.reveal.in{opacity:1;transform:none;transition:none}.avail .pulse{animation:none}}
+
+@media (max-width:920px){
+  .shell{grid-template-columns:1fr;gap:0;padding:0 20px}
+  .rail{position:sticky;top:53px;flex-direction:row;overflow-x:auto;padding:11px 0;gap:16px;background:rgba(251,251,249,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:40}
+  .rail .tick{display:none}
+  .main{padding:30px 0 80px}
+  .card,.job,.award.withphoto{grid-template-columns:1fr}
+  .award .aw-ph{border-right:none;border-bottom:1px solid var(--line);aspect-ratio:16/10;position:relative}
+  .jobL{border-right:none;border-bottom:1px solid var(--line2);border-radius:var(--radius) var(--radius) 0 0}
+  .card .shot{border-right:none;border-bottom:1px solid var(--line);aspect-ratio:16/9}
+  .figgrid,.cmp{grid-template-columns:1fr}
+  .topbar-in{padding:11px 20px}
+  .res{grid-template-columns:1fr;gap:6px}
+}
+</style>
+
+<div class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="#/"><span class="dot"></span>Snigdha Kyathari</a>
+    <div class="toplinks">
+      <a class="tl" href="https://snigdhakyathari.substack.com/" target="_blank" rel="noopener">Substack</a>
+      <a class="tl" href="mailto:snigdha.kyathari@gmail.com">snigdha.kyathari@gmail.com</a>
+      <a class="tl primary" href="https://www.linkedin.com/in/snigdha-kyathari" target="_blank" rel="noopener">Let's connect &#8594;</a>
+      <button class="tl edbtn" id="edbtn" hidden>Edit text</button>
+    </div>
+  </div>
+</div>
+
+<div class="edbar">
+  <span class="st" id="edstatus">Click any text to edit. Changes save automatically.</span>
+  <button class="ghost" id="edreset">Discard all edits</button>
+  <button id="eddone">Done</button>
+</div>
+
+<div class="shell">
+  <nav class="rail" id="rail"></nav>
+  <div class="main" id="main"></div>
+</div>
+
+<script>
+const PROJECTS = [
+  {
+    slug:"flowstate", name:"FlowState",
+    tags:["Health-tech","0 to 1","Co-founder"],
+    cover:"projects/flowstate-cover.jpg",
+    glimpse:"100+ discovery interviews turned into a validated MVP for perimenopause support. I built and shipped the website end to end (UI, backend, database) and onboarded the first 24 beta users.",
+    live:"https://flowstatewomen.lovable.app/",
+    sub:"A perimenopause support venture I co-founded during my MBA, and the first product I owned from the first interview to the first beta user.",
+    facts:[["Role","Co-founder and founding PM"],["Duration","Jan to Jun 2026"],["Team","5 (Imperial, RCA)"],["Stage","MVP shipped, beta running"]],
+    blocks:[
+      {h:"Context", p:[
+        "Perimenopause is the multi-year transition into menopause, and it is not a niche. Roughly <strong>8.5 million women in the UK</strong> are in it at any moment, about one in four. <strong>77%</strong> find at least one symptom very difficult to manage, <strong>84%</strong> say it affects them at work, and <strong>60,000+</strong> women leave the UK workforce solely because of peri and menopause symptoms.",
+        "We started FlowState as an MBA venture. I took the product: discovery, scoping, and the build."
+      ]},
+      {h:"The problem we actually found", p:[
+        "Our first assumption was that women lacked products. That was wrong. The shelves are full. What they lacked was any way to know whether something was working.",
+        "The same loop came back in interview after interview. Google the symptoms, see a GP, get dismissed or handed an HRT leaflet, buy something from Holland &amp; Barrett or Amazon, receive no feedback of any kind, churn, still searching. Every step cost money and returned no information."
+      ], pull:"The market was not short of products. It was short of feedback."},
+      {h:"Evidence", p:[
+        "I ran and synthesised <strong>100+ discovery interviews</strong> into an end to end customer journey and a set of symptom clusters. Clustering mattered more than it sounds. It turned an unmanageable list of a dozen symptoms into four or five groups a product could be built around, and it gave us a way to segment without asking women to self diagnose."
+      ]},
+      {h:"Decisions and tradeoffs", decisions:[
+        {h:"Launch one symptom cluster, not a catalogue",p:"We shipped only the Sleep and Cooling box. Sleep disruption is near universal in perimenopause, the most acutely distressing, and acute discomfort translates most directly into willingness to pay.",t:"<b>Tradeoff:</b> a much smaller addressable slice at launch, and we turned away early interest from women whose primary cluster was mood or bloating."},
+        {h:"Sell the check-in, not the products",p:"The box is the delivery mechanism. The weekly symptom check-in is the product. It is the only part that closes the feedback loop the journey map exposed, and the only part a competitor cannot replicate by sourcing the same supplements.",t:"<b>Tradeoff:</b> a harder pitch than a subscription box, and it puts retention on our ability to make tracking feel worth the two minutes."},
+        {h:"Build the MVP myself with AI-assisted coding",p:"Rather than wait on budget or an engineer, I built the UI, backend and database myself. Six years of shipping at Amazon meant the constraint was time, not capability.",t:"<b>Tradeoff:</b> I own the maintenance, and some of it will need rewriting if the beta works."},
+        {h:"Deliberately under-build the infrastructure",p:"I used product analytics to right-size for a low traffic beta instead of provisioning for scale we did not have. The instinct from Amazon was to build for peak. The right call here was the opposite.",t:"<b>Tradeoff:</b> a real migration cost if adoption spikes, accepted knowingly."}
+      ]},
+      {h:"What shipped", p:[
+        "A website with an onboarding quiz, ordering and a weekly check-in flow. The Sleep and Cooling box, sourced and assembled: magnesium glycinate, cooling pillow mist, herbal tea, silk eye mask, gel patches, lavender roll-on, sleep journal and nutrition guide. A monthly group call with a nutritionist. Three tiers at &#163;35, &#163;49 and &#163;79 a month on a hybrid subscription and single box model, so first time buyers are not forced into a commitment before the product has earned it."
+      ]},
+      {h:"Where it got to", p:[
+        "<strong>24 beta users onboarded</strong> and <strong>18 waitlist sign-ups</strong> ahead of the beta. Success criteria were set in advance: at least 70% of beta users using the products weekly, at least one self-reported symptom improvement, five detailed testimonials, and a referral or subscription purchase."
+      ], facts2:[["24","beta users onboarded"],["18","beta waitlist sign-ups"],["100+","discovery interviews"],["&#163;47","expected AOV"]]},
+      {h:"What I would do differently", p:[
+        "I would have tested willingness to pay before sourcing a single physical product. We validated the problem thoroughly and the price point barely at all. The three tiers came from unit economics and competitor benchmarks, not from anyone agreeing to pay them.",
+        "I would also have shipped the check-in as a standalone before the box. It is the defensible half, it needs no fulfilment, and we could have learned whether women will log symptoms weekly months earlier and for almost nothing."
+      ]}
+    ]
+  },
+  {
+    slug:"reframe", name:"Reframe",
+    tags:["Media and public discourse","BBC-sponsored","Pilot"],
+    cover:"projects/reframe-cover.jpg",
+    glimpse:"A BBC-sponsored project on improving public discourse. We killed our first solution after 75+ interviews and rebuilt around what people were actually doing, which was withdrawing. A two-week pilot with 112 students followed.",
+    video:{src:"video/reframe-demo.mp4",poster:"video/reframe-demo-poster.jpg"},
+    sub:"A BBC-sponsored project on public discourse, and the clearest example I have of killing my own team's solution when the evidence did not support it.",
+    facts:[["My role","Problem identification, solutioning, product specs"],["Sponsor","BBC"],["Research","75+ interviews"],["Pilot","112 students, 5 topics, 2 weeks"]],
+    blocks:[
+      {h:"What I owned", p:[
+        "I led problem identification and solutioning, and defined the product specs for Reframe. That meant owning the reframe from the BBC's broad brief to a specific, testable problem, driving the decision to kill our first solution, and writing the specification for what replaced it: the read-gate, the For / Against / Neutral structure, the AI summariser and the verification layer."
+      ]},
+      {h:"The brief and what we did with it", p:[
+        "The BBC asked: how might we improve public discourse so different views can be aired civilly, in a way that supports democracy and a healthy society? That is too broad to act on, so our first job was to narrow it.",
+        "We reframed it around a measurable collapse. <strong>BBC and ITV news reach among UK 16 to 24 year olds fell from 61% to 43% in three years</strong>, and <strong>40% of 18 to 24 year olds now actively avoid the news</strong>."
+      ], fig:{src:"projects/reframe-team.jpg",cap:"The team at the BBC London office visit, New Broadcasting House."}},
+      {h:"What 75+ interviews actually said", p:[
+        "We expected polarisation, people getting louder and further apart. That is not what we found.",
+        "People were leaving. \"Nuance in conversations is often punished.\" \"People still want serious discussions, they just don't know where they can have them.\" \"People have not become more polarised, they have withdrawn.\" The mechanism was not the volume of the extremes. It was the silence of everyone else."
+      ], pull:"The middle's silence is the mechanism, not the polarisers' loudness. That single finding invalidated our first solution.",
+       fig:{src:"projects/rf-s1.jpg",cap:"Customer discovery. 75+ interviews, and the quotes that redirected the project.",wide:true}},
+      {h:"Killing Undertone", p:[
+        "Our first solution was <strong>Undertone</strong>, an AI browser extension that added fact-checks, emotional tone detection and perspective cues on top of existing social media. We built it on the Claude API with a RAG retrieval pipeline, and it demoed well.",
+        "It was also wrong. Undertone treated polarisation as a consumption problem, as if people were seeing the wrong things. The interviews said people had stopped showing up at all. A browser extension improves the feed of someone who is still scrolling. It does nothing for someone who left. We killed it."
+      ], figs:[
+        {src:"projects/rf-s2.jpg",cap:"Undertone. The solution we built, demoed, and then dropped."},
+        {src:"projects/rf-s3.jpg",cap:"Reframe. The architecture-level answer that replaced it."}
+      ]},
+      {h:"Decisions and tradeoffs", decisions:[
+        {h:"Build a bounded space, not a better feed",p:"Reframe is a discussion platform anchored to articles. You must meaningfully engage with the source before commenting, threads are organised into For, Against and Neutral so people debate positions rather than each other, and an AI summariser surfaces the strongest argument on each side so newcomers arrive informed.",t:"<b>Accepted:</b> it will never reach X or TikTok scale, and it will not move committed polarisers. Both were stated as deliberate non-goals."},
+        {h:"Make the BBC the structure, not the sponsor",p:"Our read of the BBC flipped mid-project. We started treating them as a client with a problem and ended treating their governance as the product. A publicly funded independent trust can guarantee no engagement monetisation and no ragebait incentive, which no ad-funded platform can credibly promise.",t:"<b>Consequence:</b> the platform must allow users to criticise the BBC itself, or the guarantee is worthless. A genuinely uncomfortable ask of the funder."},
+        {h:"Publish the accessibility risk rather than bury it",p:"A read-gate disadvantages users with dyslexia or ADHD, visual impairments, or slow connections. We named it as an unintended consequence with mitigations (audio alternatives, adjustable gates, an accessibility audit) instead of leaving it for someone else to find.",t:"<b>Tradeoff:</b> it weakens a pitch to name your own failure modes on a slide. It also makes the rest of the pitch believable."}
+      ]},
+      {h:"Pilot results", p:[
+        "We ran the platform with <strong>112 students across 5 debate topics</strong> and measured it against targets set in advance. These are the results at <strong>two weeks post-launch</strong>. <strong>68% completed a full debate cycle</strong> and <strong>58% said they would return</strong>.",
+        "Feature adoption was the standout. <strong>52% of daily active users</strong> used the AI summarise and change-my-mind features every day against a 15% target, which says people wanted to understand the other side before picking one. The read-gate was the opposite story."
+      ],
+       results:[
+        ["Feature adoption (AI summarise, change my mind)","target above 15% DAU","52% DAU","hit"],
+        ["Read-Before-Reply gate engagement","target above 35%","22%","miss"],
+        ["Structural delay experience","target 7/10","6.4/10","miss"],
+        ["BBC brand trust uplift","target +20% over 6 months","+8% at week 2","hit"]
+       ],
+       p2:[
+        "The tension is legible in one quote: <em>\"I get the point, but I just want to reply while I still remember what I think.\"</em> The core prototype worked. The hard behavioural block did not. We redesigned the gate as a lighter-touch nudge rather than defending the original design, and re-tested against the same 35% target.",
+        "One qualitative finding mattered more than any of the numbers. Sentiment analysis showed pilot discussions were measurably softer than a baseline sample of X and Reddit comments on the same topics, with more hedged \"I see your point, but\" language and less hostility. Structure changed how people disagreed, not just whether they showed up."
+       ],
+       fig:{src:"projects/rf-s4.jpg",cap:"Two weeks post-launch. Results against pre-set targets, including the two we missed.",wide:true}},
+      {h:"What I would do differently", p:[
+        "We lost a week with the wrong thing at the centre of the map. Starting from 'our startup' rather than 'the problem' produced a completely different stakeholder picture and pointed us at Undertone. Problem-centred from day one would have saved the detour.",
+        "I would also bring legal and governance expertise in at the start rather than the end. The independent trust structure turned out to be the product's actual differentiator, and we reached it late, by argument rather than by expertise."
+      ]}
+    ]
+  },
+  {
+    slug:"finbuddy", name:"FinBuddy",
+    tags:["EdTech","AI agents","First prize"],
+    cover:"projects/finbuddy-cover.jpg",
+    glimpse:"An AI finance learning platform for neurodivergent 14 to 18 year olds in UK schools. Built an AI prototype and pitched in five hours, winning the first prize at Reply's Agentic Business Challenge against 50+ teams",
+    video:{src:"video/finbuddy-demo.mp4",poster:"video/finbuddy-demo-poster.jpg"},
+    sub:"An AI finance learning platform for students with special educational needs, where the hardest design constraint was not the model, it was the duty of care.",
+    facts:[["My role","Technical lead: product design, specs, agent architecture"],["Result","First prize, 50+ teams"],["Users","SEN students, 14 to 18"],["Stack","Claude API, DynamoDB, AWS EC2"]],
+    blocks:[
+      {h:"What I owned", p:[
+        "I was the technical lead. I designed the product and wrote the technical specification, including the architecture for the AI agent: the three-stage gather, analyse and adapt loop, the concept-confidence model, the data model that separates numerical errors from conceptual ones, and the stack choices behind it."
+      ]},
+      {h:"Context", p:[
+        "Financial literacy products cluster at two ends: personal finance aimed at adults, and corporate finance aimed at professionals. Almost nothing is built for younger learners, and nothing at all is built for neurodivergent ones. Students with dyslexia or dyscalculia face a standard numerical curriculum that behaves like an obstacle course rather than a syllabus.",
+        "The first version was built and pitched in five hours at Reply's Agentic Business Challenge, where it took first prize against more than 50 teams. We then developed it properly: agent architecture, two product surfaces, an ethics model and a financial case."
+      ], fig:{src:"projects/finbuddy-fig2.jpg",cap:"The gap. Existing products are older-target or general-audience. Nothing sits where FinBuddy does."}},
+      {h:"How the product works", p:[
+        "Three agent stages, each doing one job. <strong>Gathering</strong> collects behavioural signals such as time on a lesson, skips and pauses, attempts per quiz and self-reported confidence, plus performance data and teacher input on which topics to prioritise. <strong>Analysis</strong> separates numerical errors from conceptual ones, which is the distinction that matters for a dyscalculic learner. <strong>Adaptive training</strong> generates practice from the identified weak topics and runs a concept confidence model, repeating refreshers with mnemonics and gamification until confidence holds."
+      ], fig:{src:"projects/finbuddy-fig3.jpg",cap:"The three-stage agent loop: gather, analyse, adapt."},
+       figs:[
+        {src:"projects/finbuddy-student.jpg",cap:"Student view. Modules, progress and recent activity."},
+        {src:"projects/finbuddy-teacher.jpg",cap:"Teacher view. Cohort progress, confidence and students needing attention."}
+       ]},
+      {h:"Decisions and tradeoffs", decisions:[
+        {h:"Separate error types before personalising anything",p:"A wrong answer can mean the student misread the number or misunderstood the concept. Treating those the same produces a system that drills arithmetic at a learner who understood the idea perfectly, which is precisely the experience that has already failed these students once.",t:"<b>Cost:</b> a slower, more instrumented analysis stage and a much heavier data model than a generic quiz engine needs."},
+        {h:"Collect behaviour, refuse biometrics",p:"The temptation in adaptive learning is webcam attention tracking and continuous behavioural monitoring. We ruled it out. No biometric data, no live monitoring, no automated scoring, no behavioural grading. Engagement data only with consent, encrypted, anonymised and user-editable.",t:"<b>Tradeoff:</b> a weaker signal than competitors who will collect it, accepted because over-surveillance of vulnerable learners reinforces the stigma the product exists to remove."},
+        {h:"Make every adaptation explainable",p:"A 'Why did I see this?' control on every adaptation, educator visibility into the AI's logic, and the ability for learners to override or opt out. An opaque system that reorganises your learning without explanation is disempowering for exactly the students least able to push back.",t:"<b>Cost:</b> every personalisation decision has to carry a human-readable rationale, which constrains what the model is allowed to do."},
+        {h:"Build the teacher dashboard as a first-class surface",p:"SEN teachers are the buyer, the daily operator and the human-in-the-loop override. The dashboard shows cohort progress, per-student weak topics and who needs attention, not as an admin afterthought but as the product's second face.",t:"<b>Tradeoff:</b> two full product surfaces to design and maintain at MVP, which is a lot for a four-person team."}
+      ]},
+      {h:"Deliberation on the ethics", p:[
+        "We wrote the risk register before the roadmap and argued it out as a team rather than appending it at the end. Four risks, each with a rationale and a mitigation we were prepared to pay for. Data misuse, because neurodivergent learners are especially vulnerable to overcollection. Algorithmic bias, because an ADHD learner and a dyslexic learner need close to opposite things and a single model will quietly favour one. Opaque personalisation, because a system that reorganises your learning without explanation disempowers the people least able to challenge it. Autonomy erosion through over-surveillance, because tracking reduces trust and reinforces stigma.",
+        "For a product aimed at minors with disabilities and sold to public institutions, this is not a compliance appendix. It is the thing that determines whether a school can buy it at all."
+      ], fig:{src:"projects/finbuddy-fig8.jpg",cap:"The risk register. Each risk paired with its rationale and a mitigation with a real cost attached."}},
+      {h:"The financial case", p:[
+        "We modelled the business as a per-school annual subscription priced by SEN student count, then built the P&amp;L out to 2030: roughly <strong>&#163;3.0M revenue</strong>, <strong>&#163;426K EBIT</strong> and <strong>&#163;380K profit after tax</strong> at 1,600 UK schools and around 16,000 SEN students on the platform.",
+        "We also mapped the funding path rather than assuming it, identifying Innovate UK's Inclusive Innovation Award at &#163;62,500 alongside Emerge Education, Brighteye Ventures and Bethnal Green Ventures as grant and early-stage routes, with cheque sizes and follow-on potential for each.",
+        "The scale-up plan was deliberately unaggressive: 10 schools and around 300 students in year one at a heavy discount or free, 100 schools by year two, 700+ and pathway integration with local authorities by year five. Careful onboarding, avoiding overextension."
+      ], figs:[
+        {src:"projects/finbuddy-fig6.jpg",cap:"Year 1 to Year 8 impact plan, tied to school counts rather than revenue."},
+        {src:"projects/finbuddy-fig7.jpg",cap:"Success defined in learning terms, not engagement terms."}
+      ]},
+      {h:"What I would do differently", p:[
+        "We designed with SEN specialists in the plan but validated with too few actual students. The product's central claim, that separating error types changes outcomes for dyscalculic learners, is a testable hypothesis we argued rather than tested.",
+        "I would also have picked one neurodivergent profile for the MVP instead of serving dyslexia and dyscalculia at once. We wrote about the risk of the model adapting poorly across profiles and then built for both anyway."
+      ]}
+    ]
+  },
+  {
+    slug:"scrf", name:"Specialty Crops Resilience Fund",
+    tags:["Climate finance","First prize","New domain"],
+    cover:"projects/scrf-cover.jpg",
+    glimpse:"A blended finance vehicle that turns specialty crop inventory into climate capital, so smallholders stop selling at distress prices. Climate finance was a brand new field for me. Six months later, my team won the Innovative Financing Mechanisms prize at the Climate Investment Challenge 2026.",
+    live:"https://www.imperial.ac.uk/business-school/news/climate-investment-challenge-2026-next-generation-solutions-take-centre-stage/",
+    liveLabel:"Read the Imperial announcement",
+    sub:"A blended finance mechanism for smallholder farmers, in a field I had never worked in before. Six months later it won its category at the Climate Investment Challenge 2026.",
+    facts:[["Award","Innovative Financing Mechanisms"],["My workstreams","MRV framework, market sizing"],["Pilot","&#163;5M, Bihar makhana"],["Field","Climate finance, new to me"]],
+    blocks:[
+      {h:"Starting from zero", p:[
+        "I had never worked in climate finance. I came from payments, tax and fulfilment engineering at Amazon, and blended finance structures, tranching, MRV and carbon accounting were all new vocabulary in January.",
+        "This is the project I am proudest of for that reason. Six months later the structure had been reviewed and endorsed by senior ex-HSBC bankers and by Prof. Lucie Tepl&#225; of INSEAD, and it won its category at a competition drawing entries from more than 30 institutions across five continents, judged by Morgan Stanley, General Atlantic and Imperial's Centre for Climate Finance and Investment."
+      ], pull:"The transferable skill was not climate finance. It was being able to structure an ambiguous problem in a field I knew nothing about, fast enough to be useful to people who did."},
+      {h:"The problem", p:[
+        "A makhana farmer in Bihar sells at the farm gate for around <strong>&#163;0.66/kg</strong>. The same crop retails domestically at &#163;5 to &#163;8/kg and exports at &#163;15 to &#163;40/kg. That is an arbitrage of 8 to 60 times, and almost none of it reaches the person who grew it.",
+        "The reason is holding power. Farmers sell at harvest because they have no post-harvest financing, no land title to borrow against, and no route to a premium buyer. Banks will not lend against crop inventory. Moneylenders charge 60 to 100% a year, and even regulated microfinance charges 24 to 36%, which erases a smallholder's margin outright."
+      ],
+       html:`<div class="cmp">
+         <div class="ch">Traditional agricultural finance (NABARD, KCC, microfinance)</div>
+         <div class="ch b">Specialty Crops Resilience Fund</div>
+         <div class="cc"><h5>Collateral gap</h5><p>Land titles or fixed assets required. The crop itself is not recognised as an asset.</p></div>
+         <div class="cc"><h5>Collateral recognition</h5><p>Warehouse receipt financing makes crop inventory legible as collateral.</p></div>
+         <div class="cc"><h5>Debt-trap risk</h5><p>Informal rates of 60 to 100%, and penalties on default push farmers into a permanent debt cycle.</p></div>
+         <div class="cc"><h5>Financial resilience</h5><p>Crop-backed liquidity and convertible revenue rights replace the debt cycle with ownership.</p></div>
+         <div class="cc"><h5>Climate value gap</h5><p>Sustainable practice generates no direct financial reward. Preserving a wetland pays the same as draining it.</p></div>
+         <div class="cc"><h5>Incentivised climate action</h5><p>Verified KPIs convert sustainability performance into revenue share and cheaper debt.</p></div>
+         <div class="cc"><h5>Market access gap</h5><p>No direct buyer linkage. Price uncertainty and exploitation by middlemen.</p></div>
+         <div class="cc"><h5>Direct buyer linkage</h5><p>Advance purchase agreements guarantee offtake and eliminate the distress sale.</p></div>
+       </div>`},
+      {h:"Why it is a climate problem", p:[
+        "The crops in question are climate assets. Makhana is a water-resilient aquatic crop grown in flood-prone wetlands that store 30 to 60 tCO&#8322;e per hectare. Saffron and turmeric are drought-tolerant perennials. None compete with food production.",
+        "When margins compress, those systems get replaced. Kashmir's saffron acreage has shrunk by over 50% since the 1990s as growers switch to high-input annual vegetables. Bihar's wetlands get drained for cattle and paddy. The financial failure and the carbon loss are the same event."
+      ], fig:{src:"projects/sc-s2.jpg",cap:"The three pilot crops and their sequestration profiles: makhana, turmeric, Kashmiri saffron.",wide:true}},
+      {h:"The mechanism", p:[
+        "An investment-grade brand signs an <strong>Advance Purchase Agreement</strong> twelve months ahead at a fixed price, which converts uncertain spot revenue into contractual cash flow. The fund lends against those receivables rather than against the farmer, so the credit question becomes the brand's rating, not a smallholder's absent financial history. When the brand settles, payment flows directly into escrow, bypassing the exporter, and a waterfall repays tranches automatically.",
+        "The elegant part is the <strong>Convertible Revenue Right</strong>. Rather than the fund extracting a permanent fee, its revenue share transfers irrevocably to the cooperative as verified climate KPIs are met, moving the cooperative from 70% to 90 or 100% permanently. The same verification simultaneously steps a sustainability-linked loan from 7% to 5%. Climate performance becomes ownership, not a rebate."
+      ],
+       figs:[{src:"projects/sc-s3.jpg",cap:"The mechanism end to end: APA, tranched fund, sustainability-linked loan, escrow, waterfall with CRR."},{src:"projects/sc-s4.jpg",cap:"Following &#163;1 through it. A 60-day capital cycle."}],
+       html:`<table class="stepdown">
+        <thead><tr><th>Stage</th><th>Fund revenue share</th><th>Cooperative retains</th><th>Net to co-op per kg</th><th>Tranche B rate</th></tr></thead>
+        <tbody>
+          <tr><td>Baseline (Y0)</td><td>30%</td><td>70%</td><td>&#163;10.50</td><td>7%</td></tr>
+          <tr><td>Water KPI met</td><td>25%</td><td>75%</td><td>&#163;11.25</td><td>6%</td></tr>
+          <tr><td>Carbon KPI met</td><td>20%</td><td>80%</td><td>&#163;12.00</td><td>5%</td></tr>
+          <tr><td>3 consecutive years</td><td><b>10%, then exits</b></td><td><b>90 to 100%</b></td><td><b>&#163;15.00</b></td><td>5% locked</td></tr>
+        </tbody></table>`},
+      {h:"What I owned", p:[
+        "Two workstreams, both of which I had to learn from scratch.",
+        "<strong>Climate impact measurement and verification.</strong> I developed the three-level Monitoring, Reporting and Verification framework that underpins the fund's credibility with investors. This is the load-bearing piece: every climate-linked mechanism in the structure, the rate step-downs and the revenue-right transfers alike, triggers off verified KPIs. Without a framework an independent third party can actually audit, those step-downs are a promise rather than a trigger and the whole differentiator collapses.",
+        "<strong>Market sizing and social impact analysis.</strong> I built the TAM, SAM and SOM model quantifying the addressable market, the financing gap and the potential impact: 50,000 farming households and a &#163;60M liquidity gap at the top, narrowing to 3,500 households and &#163;8.9M as a realistic Bihar pilot. This is what turned an interesting mechanism into something a judge could size.",
+        "I did much of this while on a Global Experience Week in Kenya with my MBA cohort, which is its own lesson in what you can deliver when the schedule refuses to cooperate."
+      ], fig:{src:"projects/sc-s5.jpg",cap:"The market sizing I built: 50,000 farming households and a &#163;60M liquidity gap at the top, narrowing to a 3,500-household Bihar pilot.",wide:true}},
+      {h:"Result", p:[
+        "We presented at The Royal Institution in London on 11 June 2026 and were awarded <strong>Best Innovative Financing Mechanism</strong>. The challenge was sponsored by General Atlantic, Hitachi, Morgan Stanley and Imperial's Centre for Climate Finance and Investment, with eight finalist teams drawn from over 30 institutions across five continents.",
+        "On demand validation we were honest about being early: eight targeted outreaches produced three substantive responses, two ongoing dialogues and one scheduled discovery call."
+      ], fig:{src:"projects/sc-s6.jpg",cap:"Traction and validation as we presented it, including the path to a Bihar pilot.",wide:true}},
+      {h:"What I would do differently", p:[
+        "The structure is stronger than the demand evidence. Eight outreaches is a thin base for a mechanism that only works if investment-grade brands sign twelve-month advance purchase agreements, and that is the single assumption the whole vehicle rests on. I would have spent some of the weeks we put into tranche modelling on getting two brands to say yes in writing.",
+        "On my own workstream, I would have pressure-tested the MRV cost earlier. Everything climate-linked in the design assumes third-party verification is affordable at smallholder scale, and I modelled the framework more rigorously than I modelled its price."
+      ]}
+    ]
+  },
+  {
+    slug:"tate", name:"Tate Modern Visitor Challenge",
+    tags:["Design thinking","Service design","Tate Modern"],
+    cover:"projects/tate-cover.jpg",
+    glimpse:"Why do Londoners who live minutes from Tate Modern almost never go in? 100+ data points from interviews, on-site observation and cultural probes, narrowed to three insights and a prototyped concept for repeat family visits.",
+    sub:"A design thinking project on the Visitor Attraction Challenge. The interesting part was not the solution, it was how long we had to stay with the problem before the real one appeared.",
+    facts:[["My role","Insights, personas, journey maps"],["Challenge","Visitor Attraction Challenge"],["Research","100+ data points, 8 interviews"],["Output","3 concepts, 1 prototyped"]],
+    blocks:[
+      {h:"What I owned", p:[
+        "I contributed at every stage of this one, and the part I mainly worked on was the turn from raw research into something designable: drafting the insight statements, building the personas, and mapping the customer journeys that the concepts were then generated against."
+      ]},
+      {h:"How we chose the problem", p:[
+        "We explored 19 possible visitor attractions before settling on Tate Modern. Two things made it the strongest candidate. It is one of the most visited museums in the world, so the failure is not obscurity. And Tate has publicly acknowledged difficulty bringing local audiences back since COVID.",
+        "That gave us a sharp design challenge: <strong>how might we make Tate Modern a place Londoners choose to visit regularly, not just once?</strong>"
+      ]},
+      {h:"Research", p:[
+        "We deliberately recruited across the engagement spectrum rather than surveying the average visitor: moderate users who had visited one to five times in three years, extreme high engagement paid members visiting several times a year, and extreme low engagement people who had never been or went once long ago.",
+        "Five methods, because interviews alone would have told us what people believe rather than what they do. Seven local interviews plus one Tate staff member. On-site observation. Desk research across statistics, press and Reddit. Visiting as ordinary visitors ourselves. And a cultural probe asking participants to track their own behaviour and emotions over time."
+      ], fig:{src:"projects/tate-fig1.jpg",cap:"Who we researched and how, across the full engagement spectrum."}},
+      {h:"From 100+ data points to three insights", p:[
+        "This was the hardest part of the project, and in hindsight the most important. We had over a hundred data points on a Miro research wall: quotes, observations, emotions, stories. Turning that into three actionable insight statements took several rounds of argument, and the insights we landed on were meaningfully different from the patterns we thought we were seeing after the first few interviews.",
+        "Three patterns held. Locals use Tate as a social backdrop rather than an art destination. Visits are driven by external triggers such as rain, visiting friends or school holidays, not by intent. And families need activities, not just space."
+      ], pull:"If we had moved to ideation early, we would have built concepts for the wrong problem.",
+       personas:[
+        ["Emily Thompson","25, spontaneous wanderer","\"I like being around culture, but I don't always want to feel like I am doing a 'museum visit'.\""],
+        ["Julia Collins","38, time-pressed cultural parent","\"If museums made it easier and more fun for kids, we'd go there all the time.\""],
+        ["David Carter","29, casual cultural explorer","\"I like Tate but after a few visits, it feels redundant and I no longer want to visit.\""]
+       ],
+       fig:{src:"projects/tate-fig2.jpg",cap:"The three insight statements, each with what is going on, why, and the tension it creates."}},
+      {h:"Ideation and narrowing", p:[
+        "We ran silent brainstorming first to avoid groupthink, then De Bono lateral provocations, then a random object prompt (a coffee cup, which produced a whole cluster of ideas about ritual, warmth and low commitment). That produced more than thirty concept cards.",
+        "Narrowing used dot voting, then forced connections to combine related ideas into three coherent concepts, then an impact versus effort matrix. Plotting everything visually before deciding gave the team a defensible basis for selection instead of voting by instinct, which matters more than it sounds when five people each have a favourite."
+      ], figs:[
+        {src:"projects/tate-fig4.jpg",cap:"Impact versus effort. Family Discovery Loop came out as the priority concept."},
+        {src:"projects/tate-fig3.jpg",cap:"Three personas, three different insights, three non-overlapping concepts."}
+      ]},
+      {h:"The concept we prototyped", p:[
+        "<strong>Family Discovery Loop</strong>: a family-focused route through Tate built from guided missions, hands-on activities and a clearly marked family entry point. High impact, low to medium effort, and the best strategic fit against Julia's insight.",
+        "The before and after is specific. Before: planning is exhausting, the family wanders without a route, kids lose interest after fifteen minutes of looking at art, and they would not return. After: a clearly signposted family area, a map that shows exactly where to go, a 'find three shapes' challenge the kids actually participate in, and a reason to come back next month for a different mission."
+      ], figs:[
+        {src:"projects/tate-fig5.jpg",cap:"Julia's journey, before and after the Family Discovery Loop."},
+        {src:"projects/tate-fig7.jpg",cap:"Low-fidelity prototype: hand-drawn mission cards and paper sketches."}
+      ]},
+      {h:"Assumption mapping", p:[
+        "Before testing anything we mapped every assumption on a certainty versus criticality grid, which is the habit from this project I have kept. The four we put in the test-first quadrant were all uncertain and all critical: that parents value structured mission-based engagement, that parents have enough time for a weekend activity with their kids, that completing a route creates enough perceived value to justify ongoing content design and maintenance, and that parents will repeat the visit for new challenges.",
+        "Naming those four explicitly meant the testing plan wrote itself, and it stopped us testing the things we already knew."
+      ], fig:{src:"projects/tate-fig6.jpg",cap:"Assumption map. Uncertain and critical goes in the top right, and gets tested first."}},
+      {h:"What I would do differently", p:[
+        "Recruitment. Several of our interviewees were connected to each other through existing networks, which almost certainly narrowed the range of perspectives we heard. I would actively seek out people with no prior connection to us.",
+        "One staff interview was not enough. Three or four across gallery attendants, education, marketing and membership would have grounded our feasibility assumptions in institutional reality rather than inference.",
+        "And we described the prototype to people rather than testing it. Family Discovery Loop was explained to adult participants, never run with an actual parent and young children in the gallery. That is the test that would have told us something we did not already believe."
+      ]}
+    ]
+  }
+];
+
+const EXPERIENCE = [
+  {co:"Operations Nation", unit:"MBA consulting project", role:"Product Strategy Consultant", when:"Jun 2026 to Jul 2026", loc:"London, UK", logo:"logos/opsnation.jpg", bg:"#4400EE",
+   story:"Operations Nation is a bootstrapped community of 800+ operations leaders. I worked as an MBA consultant, directly with the co-founder. My job was to find where the growth was hiding and turn that into a plan they could execute.",
+   win:{big:"30% / 73%", lab:"Where the growth was hiding", p:"Onboarding drop-off and 90-day inactivity. Naming those two numbers is what turned a vague engagement problem into a prioritised roadmap."},
+   bullets:[
+    "Identified barriers to engagement, uncovering 30% onboarding drop-off and 73% 90-day inactivity, and translated member interviews and usage data into a prioritised product roadmap with clear measures for activation and retention.",
+    "Defined go-to-market and product specification for a new employer-paid marketplace, including user stories, P0 and P1 prioritisation and a pricing model, with build gated on validated employer demand.",
+    "Delivered a phased implementation roadmap presented directly to the co-founder."
+   ]},
+  {co:"Amazon", unit:"Fulfilment Services", role:"Software Development Engineer", when:"Feb 2024 to Apr 2025", loc:"Bangalore, India", logo:"logos/amazon.jpg", bg:"#FF6600",
+   story:"At Fulfillment Services, I worked on the systems that orchestrate inventory movement across fulfilment centres. The whole journey, from a request to move an item, the handshake with transportation services to receiving at the other end, and putting the item back on a shelf.",
+   photo:{src:"photos/amazon-fc.jpg",cap:"On the floor at an Amazon fulfilment centre."},
+   win:{big:"100%", lab:"Prime Day 2024 uptime", p:"Owned resilience strategy for fulfilment and coordinated 15 developers through peak. Zero support escalations at 20M requests per hour."},
+   bullets:[
+    "Owned resilience strategy for fulfilment, coordinating a team of 15 developers in scaling initiatives that achieved 100% uptime and zero support escalations during Prime Day 2024 at 20M/hour peak traffic.",
+    "Mitigated a high-latency bottleneck in the container receive process. Led the system redesign to an asynchronous model with deferred error handling, prioritising throughput over real-time accuracy, and reduced latency by 20%."
+   ]},
+  {co:"Amazon", unit:"Tax Services", role:"Software Development Engineer", when:"Dec 2021 to Jan 2024", loc:"Hyderabad, India", logo:"logos/amazon.jpg", bg:"#FF6600",
+   story:"I worked on the systems that generated aggregated invoices for 5M+ Amazon sellers worldwide.",
+   photo:{src:"photos/amazon-office.jpg",cap:"At the Spheres, Amazon Seattle."},
+   win:{big:"200+", lab:"Engineers validated the demand", p:"Spotted that an internal developer tool had cross-organisational value, validated it with 200+ engineers at the Amazon Developer Conference, and turned that into a committed three-year product roadmap."},
+   bullets:[
+    "Identified cross-organisational utility of an internal developer tool, validated demand with 200+ engineers at the Amazon Developer Conference, built the business case for extension and secured commitment to a three-year product roadmap.",
+    "Defined product strategy to unlock invoice platform extensibility and reduce infrastructure costs, driving two infrastructure migrations that cut operational costs by 66% and 80% with zero support escalations.",
+    "Discovered a systemic data validation error affecting 120K North America sellers through Amazon QuickSight analysis, led reprocessing with the tax analytics team and automated the remediation, restoring regulatory compliance. Earned a Bias for Action award."
+   ]},
+  {co:"Amazon", unit:"Payments", role:"Software Development Engineer", when:"Jun 2019 to Nov 2021", loc:"Hyderabad, India", logo:"logos/amazon.jpg", bg:"#FF6600",
+   story:"I worked on High frequency financial services like Digital Gold, Credit card bill payments and Amazon Pay dashboard. I owned multiple components in Digital Gold and took it from launch through its first year to 100K+ monthly active users, and it is still growing in India.",
+   win:{big:"100K+ MAU", lab:"The 0 to 1 that changed my direction", p:"Digital Gold in its first year. Later I averted its shutdown by delivering KYC verification under a hard compliance deadline, aligning legal, engineering and operations with no prior playbook."},
+   bullets:[
+    "Owned end-to-end launch strategy for Digital Gold across gold vault, consent, payment flows and post-order experience, and delivered a phased rollout with UX, QA and backend teams.",
+    "Averted shutdown of Digital Gold by leading end-to-end delivery of KYC verification under a hard compliance deadline with no prior playbook.",
+    "Drove Amazon Pay Search from insight to launch, observing high-friction navigation patterns in the Amazon Pay dashboard, prototyping, and securing leadership prioritisation for roadmap inclusion.",
+    "Launched a payment reminders feature that improved retention. Identified the opportunity from user metrics, led product strategy and development, and validated impact through A/B testing, generating 50+ visits per second."
+   ]}
+];
+
+const AWARDS = [
+  {t:"First Prize, Climate Investment Challenge 2026", w:"Jun 2026",
+   d:"Best Innovative Financing Mechanism for the Specialty Crops Resilience Fund against entries from over 30 institutions across five continents. Presented at The Royal Institution, London, on 11 June 2026.",
+   link:"https://www.imperial.ac.uk/business-school/news/climate-investment-challenge-2026-next-generation-solutions-take-centre-stage/", linkLabel:"Imperial announcement",
+   photo:"photos/cic.jpg", pos:"center 40%"},
+  {t:"First Prize, Reply's Agentic Business Challenge", w:"Nov 2025",
+   d:"First among 50+ teams at Reply Student Clash for building the FinBuddy prototype and pitch in five hours.",
+   link:"https://lnkd.in/p/e7u57mu3", linkLabel:"See the post",
+   photo:"photos/reply.jpg", pos:"center 30%"},
+  {t:"Fort&#233; Fellowship", w:"2025",
+   d:"50% MBA scholarship awarded by the Fort&#233; Foundation, which supports women into business leadership.",
+   photo:"photos/forte.jpg", pos:"center 22%"}
+];
+
+const EDUCATION = [
+  {s:"Imperial College Business School",d:"Master of Business Administration",loc:"London, UK",w:"Sep 2025 to Aug 2026",f:"Fort&#233; Fellow, 50% scholarship",logo:"logos/imperial.jpg",bg:"#0000CC"},
+  {s:"University of St.Gallen (HSG)",d:"MBA exchange semester",loc:"St.Gallen, Switzerland",w:"2026",f:"St.Gallen, Switzerland",logo:"logos/hsg.jpg",bg:"#00802B"},
+  {s:"IIT Bhubaneswar",d:"B.Tech (Honours), Computer Science and Engineering",loc:"Bhubaneswar, India",w:"Jul 2015 to May 2019",f:"CGPA 8.77 / 10",logo:"logos/iitbbs.jpg",bg:"#1E3A5F"}
+];
+
+const SKILLS = [
+  ["Product", ["Product roadmap","Go-to-market strategy","User research","Design thinking","Competitive analysis","Prioritisation (RICE, MoSCoW)","PRDs and specs","User story mapping","Journey mapping","Jobs-to-be-Done","North Star metrics","Agile / Scrum","Figma"]],
+  ["AI", ["Claude Code","AI Prototyping","AI agents","Agent orchestration","LLMs","MCP","RAG","AI evals","Prompt Engineering","Vibe coding","Human-in-the-loop design"]],
+  ["Analytics", ["SQL","Tableau","Amazon QuickSight","Financial modelling","Market sizing (TAM/SAM/SOM)","Dashboarding","Funnel optimisation","Cohort analysis","Retention and churn analysis","A/B experimentation","Hypothesis testing"]],
+  ["Engineering", ["System design","Distributed systems","Microservices","APIs","Asynchronous processing","AWS services","Data pipelines","CI/CD","Integration testing","On-call and incident response","Java","Java Spring","Python","Git"]]
+];
+
+/* ============ RENDER ============ */
+const $ = (s,r=document)=>r.querySelector(s);
+
+function homeHTML(){
+  const cards = PROJECTS.map(p=>`
+    <a class="card reveal" href="#/${p.slug}">
+      <div class="shot"><img src="${p.cover}" alt="${p.name}" loading="lazy"></div>
+      <div class="body">
+        <div class="tagrow">${p.tags.map((t,i)=>`<span class="tag ${i?'muted':''}">${t}</span>${i<p.tags.length-1?'<span class="tag sep">/</span>':''}`).join("")}</div>
+        <h3>${p.name}</h3>
+        <p>${p.glimpse}</p>
+        <div class="cardfoot">
+          <span class="cta">Read case study &#8594;</span>
+          ${p.live?`<span class="cta ghost">${p.liveLabel||'Visit site'} &#8599;</span>`:``}
+          ${p.video?`<span class="cta ghost">Demo video</span>`:``}
+        </div>
+      </div>
+    </a>`).join("");
+
+  const jobs = EXPERIENCE.map(j=>`
+    <div class="job reveal">
+      <div class="jobL">
+        <div class="logo" style="background:${j.bg}"><img src="${j.logo}" alt="${j.co}"></div>
+        <div class="co">${j.co}</div>
+        ${j.unit?`<div class="unit">${j.unit}</div>`:``}
+        <p class="rl">${j.role}</p>
+        <div class="wh">${j.when}<br>${j.loc}</div>
+      </div>
+      <div class="jobR">
+        <p class="story">${j.story}</p>
+        ${j.win?`<div class="win"><div class="big">${j.win.big}</div><div class="txt"><div class="lab">${j.win.lab}</div><p>${j.win.p}</p></div></div>`:``}
+        <ul>${j.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+        ${j.photo?`<figure class="jobphoto"><img src="${j.photo.src}" alt="" loading="lazy"><figcaption>${j.photo.cap}</figcaption></figure>`:``}
+      </div>
+    </div>`).join("");
+
+  const awards = AWARDS.map(a=>`
+    <div class="award ${a.photo?'withphoto':''} reveal">
+      ${a.photo?`<div class="aw-ph"><img src="${a.photo}" alt="" loading="lazy" style="object-position:${a.pos||'center'}"></div>`:``}
+      <div class="aw-body">
+        <div class="wh">${a.w}</div>
+        <h3>${a.t}</h3>
+        <p>${a.d}</p>
+        ${a.link?`<a class="lk" href="${a.link}" target="_blank" rel="noopener">${a.linkLabel} &#8599;</a>`:``}
+      </div>
+    </div>`).join("");
+
+  const edu = EDUCATION.map(e=>`
+    <div class="ed">
+      <div class="logo" style="background:${e.bg};width:40px;height:40px;margin:0"><img src="${e.logo}" alt="${e.s}"></div>
+      <div class="t"><h3>${e.s}</h3><p>${e.d}</p></div>
+      <div class="eduright">${e.loc?`<span class="eduloc">${e.loc}</span>`:``}<span class="when">${e.w}</span></div>
+    </div>`).join("");
+
+  const skills = SKILLS.map(([h,items])=>`
+    <div class="skillgroup reveal"><h3>${h}</h3><div class="pills">
+      ${items.map(n=>`<span class="pill">${n}</span>`).join("")}
+    </div></div>`).join("");
+
+  return `
+  <section id="intro" class="hero">
+    <div class="hero-top">
+      <img class="photo" src="headshot.jpg" alt="Snigdha Kyathari">
+      <div style="flex:1;min-width:260px">
+        <h1>Snigdha Kyathari</h1>
+        <p class="kicker">product manager &#183; 0 to 1 builder &#183; z&#252;rich</p>
+        <span class="avail"><span class="pulse"></span>Open to Product Manager roles in Switzerland</span>
+      </div>
+    </div>
+    <p class="lede">I build and own products end to end, from understanding the problem and shaping the solution to working with stakeholders and making data-driven decisions. With a background in software engineering and an MBA, I enjoy connecting technology, customer needs, and business impact.</p>
+    <p class="lede">Based in Z&#252;rich with full work authorisation, I'm looking to apply my experience in a Product Manager role.</p>
+    <div class="chips">
+      <span class="chip"><b>Imperial MBA</b> 2026</span>
+      <span class="chip">Exchange &#183; <b>Univ. of St.Gallen</b></span>
+      <span class="chip"><b>6 yrs</b> at Amazon</span>
+      <span class="chip">Z&#252;rich &#183; <b>Swiss B permit</b></span>
+    </div>
+    <div class="introlinks">
+      <a class="tl primary" href="https://www.linkedin.com/in/snigdha-kyathari" target="_blank" rel="noopener">Let's connect on LinkedIn &#8594;</a>
+      <a class="tl" href="mailto:snigdha.kyathari@gmail.com">snigdha.kyathari@gmail.com</a>
+      <a class="tl" href="https://snigdhakyathari.substack.com/" target="_blank" rel="noopener">I write on Substack &#8599;</a>
+    </div>
+  </section>
+
+  <section id="projects" style="padding-bottom:72px">
+    <div class="sechead"><span class="num">01</span><h2>Projects</h2></div>
+    <div class="cards">${cards}</div>
+  </section>
+
+  <section id="experience" style="padding-bottom:72px">
+    <div class="sechead"><span class="num">02</span><h2>Experience</h2></div>
+    <div class="xp">${jobs}</div>
+    <div class="sechead" style="margin-top:44px"><span class="num">02b</span><h2>Awards</h2></div>
+    <div class="awards">${awards}</div>
+  </section>
+
+  <section id="education" style="padding-bottom:72px">
+    <div class="sechead"><span class="num">03</span><h2>Education</h2></div>
+    <div class="edu reveal">${edu}</div>
+  </section>
+
+  <section id="skills">
+    <div class="sechead"><span class="num">04</span><h2>Skills</h2></div>
+    ${skills}
+  </section>`;
+}
+
+function blockHTML(b){
+  let out = `<div class="blk reveal"><h2>${b.h}</h2>`;
+  (b.p||[]).forEach(x=>out+=`<p>${x}</p>`);
+  if(b.note) out+=`<div class="note">&#9873; ${b.note}</div>`;
+  if(b.pull) out+=`<div class="pull">${b.pull}</div>`;
+  if(b.personas) out+=`<div class="personas">${b.personas.map(p=>`<div class="persona"><div class="pn">${p[0]}</div><div class="pa">${p[1]}</div><div class="pq">${p[2]}</div></div>`).join("")}</div>`;
+  if(b.html) out+=b.html;
+  if(b.fig) out+=`<figure class="${b.fig.wide?'wide':''}"><img src="${b.fig.src}" alt="" loading="lazy"><figcaption>${b.fig.cap}</figcaption></figure>`;
+  if(b.figs) out+=`<div class="figgrid">${b.figs.map(f=>`<figure><img src="${f.src}" alt="" loading="lazy"><figcaption>${f.cap}</figcaption></figure>`).join("")}</div>`;
+  if(b.decisions) out+=b.decisions.map(d=>`<div class="decision"><h4>${d.h}</h4><p>${d.p}</p><div class="tradeoff">${d.t}</div></div>`).join("");
+  if(b.results) out+=`<div class="results">${b.results.map(r=>`<div class="res"><span class="n">${r[0]}</span><span class="t">${r[1]}</span><span class="a ${r[3]}">${r[2]}</span></div>`).join("")}</div>`;
+  (b.p2||[]).forEach(x=>out+=`<p>${x}</p>`);
+  if(b.facts2) out+=`<div class="facts">${b.facts2.map(f=>`<div class="fact"><div style="font-size:21px;font-weight:600;letter-spacing:-.03em">${f[0]}</div><div class="k" style="margin:6px 0 0">${f[1]}</div></div>`).join("")}</div>`;
+  return out+`</div>`;
+}
+
+function caseHTML(p){
+  return `
+  <a class="back" href="#/">&#8592; All projects</a>
+  <div class="cs-hero">
+    <div class="tagrow">${p.tags.map((t,i)=>`<span class="tag ${i?'muted':''}">${t}</span>${i<p.tags.length-1?'<span class="tag sep">/</span>':''}`).join("")}</div>
+    <h1>${p.name}</h1>
+    <p class="cs-sub">${p.sub}</p>
+    ${p.live?`<p style="margin:0 0 22px"><a class="cta" href="${p.live}" target="_blank" rel="noopener">${p.liveLabel||'Visit the live site'} &#8599;</a></p>`:``}
+    <div class="facts">${p.facts.map(f=>`<div class="fact"><div class="k">${f[0]}</div><div class="v">${f[1]}</div></div>`).join("")}</div>
+  </div>
+  ${p.video?`<div class="blk reveal"><h2>Demo</h2><video controls preload="none" poster="${p.video.poster}"><source src="${p.video.src}" type="video/mp4"></video></div>`:``}
+  ${p.blocks.map(blockHTML).join("")}
+`;
+}
+
+
+/* ============ EDITABLE CONTENT ============ */
+const ED_SEL = [
+  "h1","h2","h3","h4","h5","p","li","figcaption",".pull",".chip",".tag",
+  ".win .big",".win .lab",".fact .k",".fact .v",".pill",".jobL .co",".jobL .unit",".jobL .wh",
+  ".award .wh",".ed .when","td","th",".persona .pn",".persona .pa",".persona .pq",
+  ".cmp .ch",".res .n",".res .t",".res .a",".decision .tradeoff",".kicker",".cs-sub",".story"
+].map(x=>"#main "+x).join(",");
+
+let CDB=null, OVR={}, EDIT=false, saveTimer=null, dirty=false, LOADED=false;
+const pendingKeys=new Set();
+
+function viewKey(){
+  const h = location.hash.replace(/^#\/?/,"");
+  return PROJECTS.some(p=>p.slug===h) ? "case_"+h : "home";
+}
+function editables(){ return [...document.querySelectorAll(ED_SEL)]; }
+
+function tagEditables(){
+  editables().forEach((el,i)=>el.setAttribute("data-k", String(i)));
+}
+
+function normText(h){
+  return String(h==null?"":h)
+    .replace(/<[^>]*>/g," ")
+    .replace(/&nbsp;/gi," ")
+    .replace(/&amp;/gi,"&")
+    .replace(/\u00a0/g," ")
+    .replace(/\s+/g," ")
+    .trim();
+}
+function applyOverrides(){
+  const map = OVR[viewKey()];
+  if(!map) return;
+  editables().forEach((el,i)=>{
+    const rec = map[String(i)];
+    if(!rec) return;
+    // apply when this element still holds the text the edit was made against,
+    // compared on normalised text so markup and whitespace noise do not block it
+    if(rec.orig !== undefined && normText(rec.orig) !== normText(el.innerHTML)
+       && normText(rec.html) !== normText(el.innerHTML)) return;
+    if(normText(rec.html) === normText(el.innerHTML)) return;
+    el.innerHTML = rec.html;
+  });
+}
+
+async function loadOverrides(){
+  if(!CDB) return;
+  const keys = ["home", ...PROJECTS.map(p=>"case_"+p.slug)];
+  await Promise.all(keys.map(async k=>{
+    try{
+      const snap = await CDB.doc("content/"+k).get();
+      if(snap.exists) OVR[k] = snap.data();
+    }catch(e){}
+  }));
+}
+
+function queueSave(k){
+  pendingKeys.add(k);
+  dirty = true;
+  setStatus("Saving...");
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveNow, 900);
+}
+let saving=false;
+async function saveNow(){
+  if(!CDB || !LOADED || saving){ if(pendingKeys.size) saveTimer=setTimeout(saveNow,600); return; }
+  saving = true;
+  for(const k of [...pendingKeys]){
+    const map = OVR[k];
+    // never write an empty map from a background save: only the Discard button clears
+    if(!map || Object.keys(map).length===0){ pendingKeys.delete(k); continue; }
+    try{
+      await CDB.doc("content/"+k).set(map);
+      pendingKeys.delete(k);
+    }catch(e){
+      setStatus("Could not save: " + (e && e.code ? e.code : "error"));
+      saving=false; saveTimer=setTimeout(saveNow,2000); return;
+    }
+  }
+  saving = false;
+  dirty = pendingKeys.size>0;
+  setStatus(dirty ? "Saving..." : "All changes saved");
+  if(dirty) saveTimer=setTimeout(saveNow,400);
+}
+function setStatus(t){ const el=document.getElementById("edstatus"); if(el) el.textContent=t; }
+
+function wireEditing(){
+  tagEditables();
+  applyOverrides();
+  const k = viewKey();
+  editables().forEach((el,i)=>{
+    el.addEventListener("focus", ()=>{ el.dataset.orig = el.dataset.orig ?? el.innerHTML; });
+    el.addEventListener("input", ()=>{
+      OVR[k] = OVR[k] || {};
+      const prev = (OVR[k][String(i)] && OVR[k][String(i)].orig);
+      OVR[k][String(i)] = { html: el.innerHTML, orig: prev !== undefined ? prev : (el.dataset.orig || el.innerHTML) };
+      queueSave(k);
+    });
+  });
+  setEditing(EDIT);
+}
+
+function setEditing(on){
+  EDIT = on;
+  document.body.classList.toggle("editing", on);
+  editables().forEach(el=>el.contentEditable = on ? "true" : "false");
+  const b = document.getElementById("edbtn");
+  if(b){ b.classList.toggle("on", on); b.textContent = on ? "Editing" : "Edit text"; }
+}
+
+document.addEventListener("click", e=>{
+  if(!EDIT) return;
+  const a = e.target.closest("#main a, #main .card");
+  if(a) e.preventDefault();
+}, true);
+
+document.getElementById("edbtn").addEventListener("click", ()=>setEditing(!EDIT));
+document.getElementById("eddone").addEventListener("click", ()=>setEditing(false));
+document.getElementById("edreset").addEventListener("click", async ()=>{
+  if(!confirm("Discard every text edit on this page and go back to the original?")) return;
+  const k = viewKey();
+  OVR[k] = {};
+  pendingKeys.delete(k);
+  try{ await CDB.doc("content/"+k).set({}); }catch(e){}
+  setStatus("Edits discarded");
+  render();
+});
+
+(async ()=>{
+  try{ CDB = await claude.use("db"); }catch(e){ CDB = null; }
+  if(!CDB) return;
+  const b = document.getElementById("edbtn");
+  if(b) b.hidden = false;
+  await loadOverrides();
+  LOADED = true;
+  wireEditing();
+})();
+
+
+let io=null, spy=null;
+function render(){
+  const hash = location.hash.replace(/^#\/?/,"");
+  const proj = PROJECTS.find(p=>p.slug===hash);
+  const main = $("#main"), rail = $("#rail");
+  if(proj){
+    main.innerHTML = caseHTML(proj);
+    rail.innerHTML = `<a href="#/"><span class="tick"></span>&#8592; All projects</a>` +
+      proj.blocks.map((b,i)=>`<a href="#blk${i}" data-spy="blk${i}"><span class="tick"></span>${b.h}</a>`).join("");
+    const blks=[...main.querySelectorAll(".blk")], offset=proj.video?1:0;
+    blks.forEach((el,i)=>{ if(i>=offset) el.id="blk"+(i-offset); });
+    document.documentElement.scrollTop=0;
+  } else {
+    main.innerHTML = homeHTML();
+    rail.innerHTML = [
+      ["#intro","intro","Intro"],["#projects","projects","01 Projects"],["#experience","experience","02 Experience"],
+      ["#education","education","03 Education"],["#skills","skills","04 Skills"]
+    ].map(([h,id,l],i)=>`<a href="${h}" data-spy="${id}" class="${i===0?'active':''}"><span class="tick"></span>${l}</a>`).join("");
+    if(hash==="") document.documentElement.scrollTop=0;
+  }
+  wire();
+  if(CDB) wireEditing();
+}
+
+function wire(){
+  if(io) io.disconnect();
+  io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}}),{rootMargin:"0px 0px -8% 0px",threshold:.05});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+  if(spy) spy.disconnect();
+  const targets=[...document.querySelectorAll("#main section[id], #main .blk[id]")];
+  const links=[...document.querySelectorAll("#rail a[data-spy]")];
+  spy=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.toggle("active",l.dataset.spy===e.target.id));}}),{rootMargin:"-12% 0px -72% 0px",threshold:0});
+  targets.forEach(t=>spy.observe(t));
+}
+
+window.addEventListener("hashchange", render);
+render();
+</script>
