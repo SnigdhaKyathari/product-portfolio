@@ -167,7 +167,13 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
                 el: el
               })).filter(s => s.label);
 
-              const sectionItems = ['<a href="/"><span class="tick"></span>← All projects</a>'];
+              const sectionItems = [
+                '<a href="/"><span class="tick"></span>← All projects</a>',
+                '<a href="/#projects"><span class="tick"></span>Projects</a>',
+                '<a href="/#experience"><span class="tick"></span>Experience</a>',
+                '<a href="/#education"><span class="tick"></span>Education</a>',
+                '<a href="/#skills"><span class="tick"></span>Skills</a>'
+              ];
               sections.forEach(section => {
                 sectionItems.push('<a href="#' + section.id + '" class="rail-link" data-section="' + section.id + '"><span class="tick"></span>' + section.label + '</a>');
               });

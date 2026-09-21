@@ -55,37 +55,35 @@ export default function Home() {
     <>
       {/* Hero / Intro */}
       <section id="intro" className="hero reveal in">
-        <div className="hero-top">
-          <img className="photo" src={PROFILE.photo} alt={PROFILE.name} loading="eager" />
-          <div style={{ flex: 1, minWidth: '260px' }}>
-            <h1>{PROFILE.name}</h1>
-            <p className="kicker" dangerouslySetInnerHTML={{ __html: PROFILE.kicker }} />
-            <span className="avail">
-              <span className="pulse"></span>
-              {PROFILE.availability}
-            </span>
+        <img className="photo" src={PROFILE.photo} alt={PROFILE.name} loading="eager" />
+        <div className="hero-content">
+          <h1>{PROFILE.name}</h1>
+          <p className="kicker" dangerouslySetInnerHTML={{ __html: PROFILE.kicker }} />
+          <span className="avail">
+            <span className="pulse"></span>
+            {PROFILE.availability}
+          </span>
+          <div className="lede-section">
+            {PROFILE.lede.map((p, i) => (
+              <p key={i} className="lede" dangerouslySetInnerHTML={{ __html: p }} />
+            ))}
           </div>
-        </div>
-        <div>
-          {PROFILE.lede.map((p, i) => (
-            <p key={i} className="lede" dangerouslySetInnerHTML={{ __html: p }} />
-          ))}
-        </div>
-        <div className="chips">
-          {PROFILE.chips.map((chip, i) => (
-            <span key={i} className="chip" dangerouslySetInnerHTML={{ __html: chip }} />
-          ))}
-        </div>
-        <div className="introlinks">
-          <a className="tl primary" href={PROFILE.linkedin} target="_blank" rel="noopener">
-            Let&apos;s connect on LinkedIn &#8594;
-          </a>
-          <a className="tl" href={`mailto:${PROFILE.email}`}>
-            {PROFILE.email}
-          </a>
-          <a className="tl" href={PROFILE.substack} target="_blank" rel="noopener">
-            I write on Substack &#8599;
-          </a>
+          <div className="chips">
+            {PROFILE.chips.map((chip, i) => (
+              <span key={i} className="chip" dangerouslySetInnerHTML={{ __html: chip }} />
+            ))}
+          </div>
+          <div className="introlinks">
+            <a className="tl primary" href={PROFILE.linkedin} target="_blank" rel="noopener">
+              Let&apos;s connect on LinkedIn &#8594;
+            </a>
+            <a className="tl" href={`mailto:${PROFILE.email}`}>
+              {PROFILE.email}
+            </a>
+            <a className="tl" href={PROFILE.substack} target="_blank" rel="noopener">
+              I write on Substack &#8599;
+            </a>
+          </div>
         </div>
       </section>
 
@@ -114,8 +112,37 @@ export default function Home() {
                 <p dangerouslySetInnerHTML={{ __html: p.glimpse }} />
                 <div className="cardfoot">
                   <span className="cta">Read case study &#8594;</span>
-                  {p.live && <span className="cta ghost">{p.liveLabel || 'Visit site'} &#8599;</span>}
-                  {p.video && <span className="cta ghost">Demo video</span>}
+                  {(p as any).link && (
+                    <a
+                      href={(p as any).link}
+                      target="_blank"
+                      rel="noopener"
+                      className="cta ghost"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {(p as any).linkLabel} &#8599;
+                    </a>
+                  )}
+                  {p.live && (
+                    <a
+                      href={p.live}
+                      target="_blank"
+                      rel="noopener"
+                      className="cta ghost"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {p.liveLabel || 'Visit site'} &#8599;
+                    </a>
+                  )}
+                  {p.video && (
+                    <a
+                      href={`/work/${p.slug}#video`}
+                      className="cta ghost"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Demo video &#8599;
+                    </a>
+                  )}
                 </div>
               </div>
             </Link>
