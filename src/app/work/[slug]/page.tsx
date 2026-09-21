@@ -53,7 +53,7 @@ export default function CaseStudy() {
   }, [project]);
 
   if (!project) {
-    return <div>Project not found</div>;
+    return <div style={{ padding: '20px' }}>Project not found</div>;
   }
 
   return (
