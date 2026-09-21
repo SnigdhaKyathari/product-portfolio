@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 export default function Home() {
   useEffect(() => {
-    // Populate rail navigation
+    // Populate rail navigation and trigger reveals
     const rail = document.getElementById('rail');
     if (!rail) return;
 
@@ -21,6 +21,12 @@ export default function Home() {
           </a>`
       )
       .join('');
+
+    // Trigger reveals for all sections
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el) => {
+      el.classList.add('in');
+    });
 
     // Scroll spy
     const handleScroll = () => {
