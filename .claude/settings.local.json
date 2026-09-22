@@ -20,7 +20,19 @@
       "Bash(curl *)",
       "Bash(echo \"Server PID: $!\")",
       "Bash(pkill -f \"next dev\")",
-      "Bash(git commit -m 'Rebuild case study pages with client-side rendering for reliable data loading *)"
+      "Bash(git commit -m 'Rebuild case study pages with client-side rendering for reliable data loading *)",
+      "Bash(git push *)",
+      "Bash(git pull *)",
+      "Bash(git stash *)",
+      "Bash(git rebase *)",
+      "Bash(git commit *)",
+      "Bash(git show *)",
+      "Bash(vercel --prod)",
+      "Bash(vercel ls *)",
+      "Bash(vercel projects *)",
+      "Bash(rm -rf .vercel)",
+      "Bash(vercel link *)",
+      "Bash(grep -v \"^--$\")"
     ]
   }
 }

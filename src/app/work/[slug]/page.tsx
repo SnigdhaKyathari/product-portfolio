@@ -78,7 +78,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
       {project.blocks?.map((block: any, i: number) => {
         const id = (block.h || '').toLowerCase().replace(/[^a-z0-9]+/g, '-');
         return (
-          <div key={i} id={id} className="blk reveal" data-section={id}>
+          <div key={i} id={id} className="blk reveal in" data-section={id}>
             {block.h && <h2>{block.h}</h2>}
             {block.p?.map((p: string, j: number) => <p key={j} dangerouslySetInnerHTML={{ __html: p }} />)}
             {block.pull && <div className="pull" dangerouslySetInnerHTML={{ __html: block.pull }} />}
