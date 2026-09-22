@@ -925,7 +925,7 @@ const PROJECTS = [
             "0 to 1",
             "Co-founder"
         ],
-        cover: "projects/flowstate-cover.jpg",
+        cover: "/projects/flowstate-cover.jpg",
         glimpse: "100+ discovery interviews turned into a validated MVP for perimenopause support. I built and shipped the website end to end (UI, backend, database) and onboarded the first 24 beta users.",
         live: "https://flowstatewomen.lovable.app/",
         sub: "A perimenopause support venture I co-founded during my MBA, and the first product I owned from the first interview to the first beta user.",
@@ -1041,11 +1041,11 @@ const PROJECTS = [
             "BBC-sponsored",
             "Pilot"
         ],
-        cover: "projects/reframe-cover.jpg",
+        cover: "/projects/reframe-cover.jpg",
         glimpse: "A BBC-sponsored project on improving public discourse. We killed our first solution after 75+ interviews and rebuilt around what people were actually doing, which was withdrawing. A two-week pilot with 112 students followed.",
         video: {
-            src: "video/reframe-demo.mp4",
-            poster: "video/reframe-demo-poster.jpg"
+            src: "/video/reframe-demo.mp4",
+            poster: "/video/reframe-demo-poster.jpg"
         },
         sub: "A BBC-sponsored project on public discourse, and the clearest example I have of killing my own team's solution when the evidence did not support it.",
         facts: [
@@ -1080,7 +1080,7 @@ const PROJECTS = [
                     "We reframed it around a measurable collapse. <strong>BBC and ITV news reach among UK 16 to 24 year olds fell from 61% to 43% in three years</strong>, and <strong>40% of 18 to 24 year olds now actively avoid the news</strong>."
                 ],
                 fig: {
-                    src: "projects/reframe-team.jpg",
+                    src: "/projects/reframe-team.jpg",
                     cap: "The team at the BBC London office visit, New Broadcasting House."
                 }
             },
@@ -1092,7 +1092,7 @@ const PROJECTS = [
                 ],
                 pull: "The middle's silence is the mechanism, not the polarisers' loudness. That single finding invalidated our first solution.",
                 fig: {
-                    src: "projects/rf-s1.jpg",
+                    src: "/projects/rf-s1.jpg",
                     cap: "Customer discovery. 75+ interviews, and the quotes that redirected the project.",
                     wide: true
                 }
@@ -1105,11 +1105,11 @@ const PROJECTS = [
                 ],
                 figs: [
                     {
-                        src: "projects/rf-s2.jpg",
+                        src: "/projects/rf-s2.jpg",
                         cap: "Undertone. The solution we built, demoed, and then dropped."
                     },
                     {
-                        src: "projects/rf-s3.jpg",
+                        src: "/projects/rf-s3.jpg",
                         cap: "Reframe. The architecture-level answer that replaced it."
                     }
                 ]
@@ -1171,7 +1171,7 @@ const PROJECTS = [
                     "One qualitative finding mattered more than any of the numbers. Sentiment analysis showed pilot discussions were measurably softer than a baseline sample of X and Reddit comments on the same topics, with more hedged \"I see your point, but\" language and less hostility. Structure changed how people disagreed, not just whether they showed up."
                 ],
                 fig: {
-                    src: "projects/rf-s4.jpg",
+                    src: "/projects/rf-s4.jpg",
                     cap: "Two weeks post-launch. Results against pre-set targets, including the two we missed.",
                     wide: true
                 }
@@ -1193,11 +1193,11 @@ const PROJECTS = [
             "AI agents",
             "First prize"
         ],
-        cover: "projects/finbuddy-cover.jpg",
+        cover: "/projects/finbuddy-cover.jpg",
         glimpse: "An AI finance learning platform for neurodivergent 14 to 18 year olds in UK schools. Built an AI prototype and pitched in five hours, winning the first prize at Reply's Agentic Business Challenge against 50+ teams",
         video: {
-            src: "video/finbuddy-demo.mp4",
-            poster: "video/finbuddy-demo-poster.jpg"
+            src: "/video/finbuddy-demo.mp4",
+            poster: "/video/finbuddy-demo-poster.jpg"
         },
         sub: "An AI finance learning platform for students with special educational needs, where the hardest design constraint was not the model, it was the duty of care.",
         facts: [
@@ -1232,7 +1232,7 @@ const PROJECTS = [
                     "The first version was built and pitched in five hours at Reply's Agentic Business Challenge, where it took first prize against more than 50 teams. We then developed it properly: agent architecture, two product surfaces, an ethics model and a financial case."
                 ],
                 fig: {
-                    src: "projects/finbuddy-fig2.jpg",
+                    src: "/projects/finbuddy-fig2.jpg",
                     cap: "The gap. Existing products are older-target or general-audience. Nothing sits where FinBuddy does."
                 }
             },
@@ -1242,16 +1242,16 @@ const PROJECTS = [
                     "Three agent stages, each doing one job. <strong>Gathering</strong> collects behavioural signals such as time on a lesson, skips and pauses, attempts per quiz and self-reported confidence, plus performance data and teacher input on which topics to prioritise. <strong>Analysis</strong> separates numerical errors from conceptual ones, which is the distinction that matters for a dyscalculic learner. <strong>Adaptive training</strong> generates practice from the identified weak topics and runs a concept confidence model, repeating refreshers with mnemonics and gamification until confidence holds."
                 ],
                 fig: {
-                    src: "projects/finbuddy-fig3.jpg",
+                    src: "/projects/finbuddy-fig3.jpg",
                     cap: "The three-stage agent loop: gather, analyse, adapt."
                 },
                 figs: [
                     {
-                        src: "projects/finbuddy-student.jpg",
+                        src: "/projects/finbuddy-student.jpg",
                         cap: "Student view. Modules, progress and recent activity."
                     },
                     {
-                        src: "projects/finbuddy-teacher.jpg",
+                        src: "/projects/finbuddy-teacher.jpg",
                         cap: "Teacher view. Cohort progress, confidence and students needing attention."
                     }
                 ]
@@ -1288,7 +1288,7 @@ const PROJECTS = [
                     "For a product aimed at minors with disabilities and sold to public institutions, this is not a compliance appendix. It is the thing that determines whether a school can buy it at all."
                 ],
                 fig: {
-                    src: "projects/finbuddy-fig8.jpg",
+                    src: "/projects/finbuddy-fig8.jpg",
                     cap: "The risk register. Each risk paired with its rationale and a mitigation with a real cost attached."
                 }
             },
@@ -1301,11 +1301,11 @@ const PROJECTS = [
                 ],
                 figs: [
                     {
-                        src: "projects/finbuddy-fig6.jpg",
+                        src: "/projects/finbuddy-fig6.jpg",
                         cap: "Year 1 to Year 8 impact plan, tied to school counts rather than revenue."
                     },
                     {
-                        src: "projects/finbuddy-fig7.jpg",
+                        src: "/projects/finbuddy-fig7.jpg",
                         cap: "Success defined in learning terms, not engagement terms."
                     }
                 ]
@@ -1327,7 +1327,7 @@ const PROJECTS = [
             "First prize",
             "New domain"
         ],
-        cover: "projects/scrf-cover.jpg",
+        cover: "/projects/scrf-cover.jpg",
         glimpse: "A blended finance vehicle that turns specialty crop inventory into climate capital, so smallholders stop selling at distress prices. Climate finance was a brand new field for me. Six months later, my team won the Innovative Financing Mechanisms prize at the Climate Investment Challenge 2026.",
         live: "https://www.imperial.ac.uk/business-school/news/climate-investment-challenge-2026-next-generation-solutions-take-centre-stage/",
         liveLabel: "Read the Imperial announcement",
@@ -1385,7 +1385,7 @@ const PROJECTS = [
                     "When margins compress, those systems get replaced. Kashmir's saffron acreage has shrunk by over 50% since the 1990s as growers switch to high-input annual vegetables. Bihar's wetlands get drained for cattle and paddy. The financial failure and the carbon loss are the same event."
                 ],
                 fig: {
-                    src: "projects/sc-s2.jpg",
+                    src: "/projects/sc-s2.jpg",
                     cap: "The three pilot crops and their sequestration profiles: makhana, turmeric, Kashmiri saffron.",
                     wide: true
                 }
@@ -1398,11 +1398,11 @@ const PROJECTS = [
                 ],
                 figs: [
                     {
-                        src: "projects/sc-s3.jpg",
+                        src: "/projects/sc-s3.jpg",
                         cap: "The mechanism end to end: APA, tranched fund, sustainability-linked loan, escrow, waterfall with CRR."
                     },
                     {
-                        src: "projects/sc-s4.jpg",
+                        src: "/projects/sc-s4.jpg",
                         cap: "Following &#163;1 through it. A 60-day capital cycle."
                     }
                 ],
@@ -1424,7 +1424,7 @@ const PROJECTS = [
                     "I did much of this while on a Global Experience Week in Kenya with my MBA cohort, which is its own lesson in what you can deliver when the schedule refuses to cooperate."
                 ],
                 fig: {
-                    src: "projects/sc-s5.jpg",
+                    src: "/projects/sc-s5.jpg",
                     cap: "The market sizing I built: 50,000 farming households and a &#163;60M liquidity gap at the top, narrowing to a 3,500-household Bihar pilot.",
                     wide: true
                 }
@@ -1436,7 +1436,7 @@ const PROJECTS = [
                     "On demand validation we were honest about being early: eight targeted outreaches produced three substantive responses, two ongoing dialogues and one scheduled discovery call."
                 ],
                 fig: {
-                    src: "projects/sc-s6.jpg",
+                    src: "/projects/sc-s6.jpg",
                     cap: "Traction and validation as we presented it, including the path to a Bihar pilot.",
                     wide: true
                 }
@@ -1458,7 +1458,7 @@ const PROJECTS = [
             "Service design",
             "Tate Modern"
         ],
-        cover: "projects/tate-cover.jpg",
+        cover: "/projects/tate-cover.jpg",
         glimpse: "Why do Londoners who live minutes from Tate Modern almost never go in? 100+ data points from interviews, on-site observation and cultural probes, narrowed to three insights and a prototyped concept for repeat family visits.",
         sub: "A design thinking project on the Visitor Attraction Challenge. The interesting part was not the solution, it was how long we had to stay with the problem before the real one appeared.",
         facts: [
@@ -1500,7 +1500,7 @@ const PROJECTS = [
                     "Five methods, because interviews alone would have told us what people believe rather than what they do. Seven local interviews plus one Tate staff member. On-site observation. Desk research across statistics, press and Reddit. Visiting as ordinary visitors ourselves. And a cultural probe asking participants to track their own behaviour and emotions over time."
                 ],
                 fig: {
-                    src: "projects/tate-fig1.jpg",
+                    src: "/projects/tate-fig1.jpg",
                     cap: "Who we researched and how, across the full engagement spectrum."
                 }
             },
@@ -1529,7 +1529,7 @@ const PROJECTS = [
                     ]
                 ],
                 fig: {
-                    src: "projects/tate-fig2.jpg",
+                    src: "/projects/tate-fig2.jpg",
                     cap: "The three insight statements, each with what is going on, why, and the tension it creates."
                 }
             },
@@ -1541,11 +1541,11 @@ const PROJECTS = [
                 ],
                 figs: [
                     {
-                        src: "projects/tate-fig4.jpg",
+                        src: "/projects/tate-fig4.jpg",
                         cap: "Impact versus effort. Family Discovery Loop came out as the priority concept."
                     },
                     {
-                        src: "projects/tate-fig3.jpg",
+                        src: "/projects/tate-fig3.jpg",
                         cap: "Three personas, three different insights, three non-overlapping concepts."
                     }
                 ]
@@ -1558,11 +1558,11 @@ const PROJECTS = [
                 ],
                 figs: [
                     {
-                        src: "projects/tate-fig5.jpg",
+                        src: "/projects/tate-fig5.jpg",
                         cap: "Julia's journey, before and after the Family Discovery Loop."
                     },
                     {
-                        src: "projects/tate-fig7.jpg",
+                        src: "/projects/tate-fig7.jpg",
                         cap: "Low-fidelity prototype: hand-drawn mission cards and paper sketches."
                     }
                 ]
@@ -1574,7 +1574,7 @@ const PROJECTS = [
                     "Naming those four explicitly meant the testing plan wrote itself, and it stopped us testing the things we already knew."
                 ],
                 fig: {
-                    src: "projects/tate-fig6.jpg",
+                    src: "/projects/tate-fig6.jpg",
                     cap: "Assumption map. Uncertain and critical goes in the top right, and gets tested first."
                 }
             },
@@ -1596,7 +1596,7 @@ const EXPERIENCE = [
         role: "Product Strategy Consultant",
         when: "Jun 2026 to Jul 2026",
         loc: "London, UK",
-        logo: "logos/opsnation.jpg",
+        logo: "/logos/opsnation.jpg",
         bg: "#4400EE",
         story: "Operations Nation is a bootstrapped community of 800+ operations leaders. I worked as an MBA consultant, directly with the co-founder. My job was to find where the growth was hiding and turn that into a plan they could execute.",
         win: {
@@ -1616,11 +1616,11 @@ const EXPERIENCE = [
         role: "Software Development Engineer",
         when: "Feb 2024 to Apr 2025",
         loc: "Bangalore, India",
-        logo: "logos/amazon.jpg",
+        logo: "/logos/amazon.jpg",
         bg: "#FF6600",
         story: "At Fulfillment Services, I worked on the systems that orchestrate inventory movement across fulfilment centres. The whole journey, from a request to move an item, the handshake with transportation services to receiving at the other end, and putting the item back on a shelf.",
         photo: {
-            src: "photos/amazon-fc.jpg",
+            src: "/photos/amazon-fc.jpg",
             cap: "On the floor at an Amazon fulfilment centre."
         },
         win: {
@@ -1639,11 +1639,11 @@ const EXPERIENCE = [
         role: "Software Development Engineer",
         when: "Dec 2021 to Jan 2024",
         loc: "Hyderabad, India",
-        logo: "logos/amazon.jpg",
+        logo: "/logos/amazon.jpg",
         bg: "#FF6600",
         story: "I worked on the systems that generated aggregated invoices for 5M+ Amazon sellers worldwide.",
         photo: {
-            src: "photos/amazon-office.jpg",
+            src: "/photos/amazon-office.jpg",
             cap: "At the Spheres, Amazon Seattle."
         },
         win: {
@@ -1663,7 +1663,7 @@ const EXPERIENCE = [
         role: "Software Development Engineer",
         when: "Jun 2019 to Nov 2021",
         loc: "Hyderabad, India",
-        logo: "logos/amazon.jpg",
+        logo: "/logos/amazon.jpg",
         bg: "#FF6600",
         story: "I worked on High frequency financial services like Digital Gold, Credit card bill payments and Amazon Pay dashboard. I owned multiple components in Digital Gold and took it from launch through its first year to 100K+ monthly active users, and it is still growing in India.",
         win: {
@@ -1686,7 +1686,7 @@ const AWARDS = [
         d: "Best Innovative Financing Mechanism for the Specialty Crops Resilience Fund against entries from over 30 institutions across five continents. Presented at The Royal Institution, London, on 11 June 2026.",
         link: "https://www.imperial.ac.uk/business-school/news/climate-investment-challenge-2026-next-generation-solutions-take-centre-stage/",
         linkLabel: "Imperial announcement",
-        photo: "photos/cic.jpg",
+        photo: "/photos/cic.jpg",
         pos: "center 40%"
     },
     {
@@ -1695,14 +1695,14 @@ const AWARDS = [
         d: "First among 50+ teams at Reply Student Clash for building the FinBuddy prototype and pitch in five hours.",
         link: "https://lnkd.in/p/e7u57mu3",
         linkLabel: "See the post",
-        photo: "photos/reply.jpg",
+        photo: "/photos/reply.jpg",
         pos: "center 30%"
     },
     {
         t: "Fort&#233; Fellowship",
         w: "2025",
         d: "50% MBA scholarship awarded by the Fort&#233; Foundation, which supports women into business leadership.",
-        photo: "photos/forte.jpg",
+        photo: "/photos/forte.jpg",
         pos: "center 22%"
     }
 ];
@@ -1713,7 +1713,7 @@ const EDUCATION = [
         loc: "London, UK",
         w: "Sep 2025 to Aug 2026",
         f: "Fort&#233; Fellow, 50% scholarship",
-        logo: "logos/imperial.jpg",
+        logo: "/logos/imperial.jpg",
         bg: "#0000CC"
     },
     {
@@ -1722,7 +1722,7 @@ const EDUCATION = [
         loc: "St.Gallen, Switzerland",
         w: "2026",
         f: "St.Gallen, Switzerland",
-        logo: "logos/hsg.jpg",
+        logo: "/logos/hsg.jpg",
         bg: "#00802B"
     },
     {
@@ -1731,7 +1731,7 @@ const EDUCATION = [
         loc: "Bhubaneswar, India",
         w: "Jul 2015 to May 2019",
         f: "CGPA 8.77 / 10",
-        logo: "logos/iitbbs.jpg",
+        logo: "/logos/iitbbs.jpg",
         bg: "#1E3A5F"
     }
 ];
