@@ -249,33 +249,25 @@ section {
 
 .hero-chips {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 0;
-  background: var(--bg);
+  flex-wrap: wrap;
+  gap: 9px;
+  background: transparent;
   padding: 0;
   margin-bottom: 22px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  overflow: hidden;
 }
 
 .hero-chips .chip {
-  flex: 1;
-  border: none;
-  border-right: 1px solid var(--line);
+  flex: none;
+  border: 1px solid var(--line);
   margin: 0;
-  padding: 14px 16px;
-  background: var(--bg);
-  border-radius: 0;
+  padding: 8px 14px;
+  background: var(--panel);
+  border-radius: var(--radius);
   font-size: 10.5px;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.hero-chips .chip:last-child {
-  border-right: none;
 }
 
 .hero-links {
