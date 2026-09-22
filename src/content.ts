@@ -329,8 +329,8 @@ export const AWARDS = [
    d:"First among 50+ teams at Reply Student Clash for building the FinBuddy prototype and pitch in five hours.",
    link:"https://lnkd.in/p/e7u57mu3", linkLabel:"See the post",
    photo:"/photos/reply.jpg", pos:"center 30%"},
-  {t:"Fort&#233; Fellowship", w:"2025",
-   d:"50% MBA scholarship awarded by the Fort&#233; Foundation, which supports women into business leadership.",
+  {t:"Forté Fellowship", w:"Jul 2025",
+   d:"50% MBA scholarship awarded by the Forté Foundation, which supports women into business leadership.",
    photo:"/photos/forte.jpg", pos:"center 22%"}
 ];
 

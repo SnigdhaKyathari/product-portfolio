@@ -328,13 +328,13 @@ export const AWARDS = [
    d:"First among 50+ teams at Reply Student Clash for building the FinBuddy prototype and pitch in five hours.",
    link:"https://lnkd.in/p/e7u57mu3", linkLabel:"See the post",
    photo:"photos/reply.jpg", pos:"center 30%"},
-  {t:"Fort&#233; Fellowship", w:"2025",
-   d:"50% MBA scholarship awarded by the Fort&#233; Foundation, which supports women into business leadership.",
+  {t:"Forté Fellowship", w:"Jul 2025",
+   d:"50% MBA scholarship awarded by the Forté Foundation, which supports women into business leadership.",
    photo:"photos/forte.jpg", pos:"center 22%"}
 ];
 
 export const EDUCATION = [
-  {s:"Imperial College Business School",d:"Master of Business Administration",loc:"London, UK",w:"Sep 2025 to Aug 2026",f:"Fort&#233; Fellow, 50% scholarship",logo:"logos/imperial.jpg",bg:"#0000CC"},
+  {s:"Imperial College Business School",d:"Master of Business Administration",loc:"London, UK",w:"Sep 2025 to Aug 2026",f:"Forté Fellow, 50% scholarship",logo:"logos/imperial.jpg",bg:"#0000CC"},
   {s:"University of St.Gallen (HSG)",d:"MBA exchange semester",loc:"St.Gallen, Switzerland",w:"2026",f:"St.Gallen, Switzerland",logo:"logos/hsg.jpg",bg:"#00802B"},
   {s:"IIT Bhubaneswar",d:"B.Tech (Honours), Computer Science and Engineering",loc:"Bhubaneswar, India",w:"Jul 2015 to May 2019",f:"CGPA 8.77 / 10",logo:"logos/iitbbs.jpg",bg:"#1E3A5F"}
 ];
