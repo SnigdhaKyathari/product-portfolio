@@ -12,9 +12,10 @@ export const PROFILE = {
     "Based in Z&#252;rich with full work authorisation, I'm looking to apply my experience in a Product Manager role.",
   ],
   chips: [
-    "<b>Imperial MBA</b> 2026",
+    "<b>Imperial MBA</b> &#183; 2026",
     "Exchange &#183; <b>Univ. of St.Gallen</b>",
-    "<b>6 yrs</b> at Amazon",
+    "<b>6 yrs</b> &#183; at Amazon",
+    "<b>IIT Bhubaneswar</b> &#183; CS",
     "Z&#252;rich &#183; <b>Swiss B permit</b>",
   ],
   photo: "/headshot.jpg",

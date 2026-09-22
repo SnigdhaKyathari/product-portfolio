@@ -87,7 +87,7 @@ export default function Home() {
       </div>
 
       {/* Projects */}
-      <section id="projects" style={{ paddingBottom: '72px' }}>
+      <section id="projects" style={{ paddingBottom: '72px', paddingTop: '44px' }}>
         <div className="sechead">
           <span className="num">01</span>
           <h2>Projects</h2>
@@ -153,7 +153,7 @@ export default function Home() {
       <section id="experience" style={{ paddingBottom: '72px' }}>
         <div className="sechead">
           <span className="num">02</span>
-          <h2>Experience</h2>
+          <h2>Work Experience</h2>
         </div>
         <div className="xp">
           {EXPERIENCE.map((job, i) => (

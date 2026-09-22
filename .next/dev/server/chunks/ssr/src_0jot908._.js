@@ -177,7 +177,8 @@ function Home() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
                 id: "projects",
                 style: {
-                    paddingBottom: '72px'
+                    paddingBottom: '72px',
+                    paddingTop: '44px'
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -374,7 +375,7 @@ function Home() {
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                                children: "Experience"
+                                children: "Work Experience"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/page.tsx",
                                 lineNumber: 156,
@@ -906,9 +907,10 @@ const PROFILE = {
         "Based in Z&#252;rich with full work authorisation, I'm looking to apply my experience in a Product Manager role."
     ],
     chips: [
-        "<b>Imperial MBA</b> 2026",
+        "<b>Imperial MBA</b> &#183; 2026",
         "Exchange &#183; <b>Univ. of St.Gallen</b>",
-        "<b>6 yrs</b> at Amazon",
+        "<b>6 yrs</b> &#183; at Amazon",
+        "<b>IIT Bhubaneswar</b> &#183; CS",
         "Z&#252;rich &#183; <b>Swiss B permit</b>"
     ],
     photo: "/headshot.jpg",

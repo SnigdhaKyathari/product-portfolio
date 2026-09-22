@@ -208,7 +208,8 @@ section {
 }
 
 .sechead h2 {
-  font-size: 13px;
+  font-size: 17px;
+  font-weight: bold;
   font-family: var(--mono);
   text-transform: uppercase;
   letter-spacing: .13em;

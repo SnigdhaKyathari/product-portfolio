@@ -145,15 +145,6 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         );
       })}
 
-      <div className="closing">
-        <div>
-          <h3>Ready to chat?</h3>
-          <p>Get in touch to discuss opportunities</p>
-        </div>
-        <a className="tl primary" href="https://www.linkedin.com/in/snigdha-kyathari" target="_blank" rel="noopener">
-          Let's connect →
-        </a>
-      </div>
 
       <CaseStudyRail />
     </>
