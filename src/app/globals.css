@@ -199,24 +199,18 @@ section {
   align-items: baseline;
   gap: 12px;
   margin: 0 0 26px;
-  padding-bottom: 11px;
-  border-bottom: 1px solid var(--line);
 }
 
 .sechead .num {
-  font-family: var(--mono);
-  font-size: 10.5px;
-  color: var(--sig);
-  letter-spacing: 0.08em;
+  display: none;
 }
 
 .sechead h2 {
-  font-size: 17px;
-  font-weight: bold;
-  font-family: var(--mono);
-  text-transform: uppercase;
-  letter-spacing: 0.13em;
-  color: var(--ink3);
+  font-size: 26px;
+  font-weight: 700;
+  font-family: var(--display);
+  letter-spacing: -0.018em;
+  color: var(--ink);
   margin: 0;
   font-weight: 500;
 }
