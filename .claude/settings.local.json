@@ -32,7 +32,8 @@
       "Bash(vercel projects *)",
       "Bash(rm -rf .vercel)",
       "Bash(vercel link *)",
-      "Bash(grep -v \"^--$\")"
+      "Bash(grep -v \"^--$\")",
+      "Bash(python3 *)"
     ]
   }
 }

@@ -157,9 +157,14 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
       <script
         dangerouslySetInnerHTML={{
           __html: `
-            setTimeout(() => {
-              (function() {
-                // Trigger reveals for all elements
+            (function() {
+              if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initRail);
+              } else {
+                initRail();
+              }
+
+              function initRail() {
                 const revealElements = document.querySelectorAll('.reveal');
                 revealElements.forEach((el) => {
                   el.classList.add('in');
@@ -201,8 +206,8 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
 
                 window.addEventListener('scroll', handleScroll, { passive: true });
                 handleScroll();
-              })();
-            }, 0);
+              }
+            })();
           `,
         }}
       />
