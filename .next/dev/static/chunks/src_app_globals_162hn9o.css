@@ -192,9 +192,11 @@ section {
 }
 
 .sechead {
+  border-bottom: 1px solid var(--line);
   align-items: baseline;
   gap: 12px;
   margin: 0 0 26px;
+  padding-bottom: 11px;
   display: flex;
 }
 
