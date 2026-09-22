@@ -244,34 +244,26 @@ section {
 }
 
 .hero-chips {
-  background: var(--bg);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  flex-wrap: nowrap;
-  gap: 0;
+  background: none;
+  flex-wrap: wrap;
+  gap: 9px;
   margin-bottom: 22px;
   padding: 0;
   display: flex;
-  overflow: hidden;
 }
 
 .hero-chips .chip {
-  border: none;
-  border-right: 1px solid var(--line);
-  background: var(--bg);
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: var(--radius);
   text-align: center;
-  border-radius: 0;
-  flex: 1;
+  flex: none;
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 14px 16px;
+  padding: 8px 14px;
   font-size: 10.5px;
   display: flex;
-}
-
-.hero-chips .chip:last-child {
-  border-right: none;
 }
 
 .hero-links {
