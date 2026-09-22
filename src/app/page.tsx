@@ -58,11 +58,6 @@ export default function Home() {
         <img className="photo" src={PROFILE.photo} alt={PROFILE.name} loading="eager" />
         <div className="hero-content">
           <h1>{PROFILE.name}</h1>
-          <p className="kicker" dangerouslySetInnerHTML={{ __html: PROFILE.kicker }} />
-          <span className="avail">
-            <span className="pulse"></span>
-            {PROFILE.availability}
-          </span>
           <div className="lede-section">
             {PROFILE.lede.map((p, i) => (
               <p key={i} className="lede" dangerouslySetInnerHTML={{ __html: p }} />

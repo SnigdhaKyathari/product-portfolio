@@ -223,23 +223,31 @@ section {
 /* Hero */
 .hero {
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 40px;
-  align-items: start;
+  grid-template-columns: 300px 1fr;
+  gap: 0;
+  align-items: stretch;
   padding-bottom: 70px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
 }
 
 .hero .photo {
-  width: 124px;
-  height: 124px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  border: none;
   object-fit: cover;
   flex: none;
 }
 
 .hero-content {
   flex: 1;
+  padding: 26px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .hero-top {
@@ -261,10 +269,10 @@ section {
 
 .hero h1 {
   font-family: var(--display);
-  font-size: clamp(33px, 4.7vw, 48px);
+  font-size: clamp(28px, 3.5vw, 38px);
   line-height: 1.05;
   letter-spacing: -0.018em;
-  margin: 2px 0 8px;
+  margin: 0 0 16px;
   font-weight: 500;
 }
 
@@ -310,16 +318,16 @@ section {
 }
 
 .lede-section {
-  margin-top: 28px;
-  margin-bottom: 22px;
+  margin-top: 0;
+  margin-bottom: 16px;
 }
 
 .lede {
-  font-size: 17px;
-  line-height: 1.72;
+  font-size: 15px;
+  line-height: 1.65;
   color: var(--ink2);
-  max-width: 660px;
-  margin: 0 0 22px;
+  max-width: none;
+  margin: 0 0 14px;
   text-align: justify;
   text-justify: inter-word;
   hyphens: auto;
@@ -334,7 +342,7 @@ section {
   display: flex;
   flex-wrap: wrap;
   gap: 7px;
-  margin-bottom: 22px;
+  margin-bottom: 14px;
 }
 
 .chip {
