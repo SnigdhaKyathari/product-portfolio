@@ -158,6 +158,12 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         dangerouslySetInnerHTML={{
           __html: `
             (function() {
+              // Trigger reveals for all elements
+              const revealElements = document.querySelectorAll('.reveal');
+              revealElements.forEach((el) => {
+                el.classList.add('in');
+              });
+
               const rail = document.getElementById('rail');
               if (!rail) return;
 
