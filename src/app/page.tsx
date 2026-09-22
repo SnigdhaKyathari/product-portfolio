@@ -63,22 +63,22 @@ export default function Home() {
               <p key={i} className="lede" dangerouslySetInnerHTML={{ __html: p }} />
             ))}
           </div>
-          <div className="chips">
-            {PROFILE.chips.map((chip, i) => (
-              <span key={i} className="chip" dangerouslySetInnerHTML={{ __html: chip }} />
-            ))}
-          </div>
-          <div className="introlinks">
-            <a className="tl primary" href={PROFILE.linkedin} target="_blank" rel="noopener">
-              Let&apos;s connect on LinkedIn &#8594;
-            </a>
-            <a className="tl" href={`mailto:${PROFILE.email}`}>
-              {PROFILE.email}
-            </a>
-            <a className="tl" href={PROFILE.substack} target="_blank" rel="noopener">
-              I write on Substack &#8599;
-            </a>
-          </div>
+        </div>
+        <div className="hero-chips">
+          {PROFILE.chips.map((chip, i) => (
+            <span key={i} className="chip" dangerouslySetInnerHTML={{ __html: chip }} />
+          ))}
+        </div>
+        <div className="hero-links">
+          <a className="tl primary" href={PROFILE.linkedin} target="_blank" rel="noopener">
+            Let&apos;s connect on LinkedIn &#8594;
+          </a>
+          <a className="tl" href={`mailto:${PROFILE.email}`}>
+            {PROFILE.email}
+          </a>
+          <a className="tl" href={PROFILE.substack} target="_blank" rel="noopener">
+            I write on Substack &#8599;
+          </a>
         </div>
       </section>
 
