@@ -10,8 +10,8 @@ export default function Home() {
     const rail = document.getElementById('rail');
     if (!rail) return;
 
-    const sections = ['intro', 'projects', 'experience', 'education', 'skills'];
-    const labels = ['Intro', '01 Projects', '02 Experience', '03 Education', '04 Skills'];
+    const sections = ['intro', 'projects', 'experience', 'awards', 'education', 'skills'];
+    const labels = ['Intro', '01 Projects', '02 Work Experience', '03 Awards', '04 Education', '05 Skills'];
 
     rail.innerHTML = sections
       .map(
@@ -198,37 +198,39 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="sechead" style={{ marginTop: '44px' }}>
-          <span className="num">02b</span>
-          <h2>Awards</h2>
-        </div>
-        <div className="awards">
-          {AWARDS.map((award, i) => (
-            <div key={i} className={`award reveal ${award.photo ? 'withphoto' : ''}`}>
-              {award.photo && (
-                <div className="aw-ph">
-                  <img src={award.photo} alt="" loading="lazy" style={{ objectPosition: award.pos || 'center' }} />
-                </div>
-              )}
-              <div className="aw-body">
-                <div className="wh">{award.w}</div>
-                <h3>{award.t}</h3>
-                <p dangerouslySetInnerHTML={{ __html: award.d }} />
-                {award.link && (
-                  <a className="lk" href={award.link} target="_blank" rel="noopener">
-                    {award.linkLabel} &#8599;
-                  </a>
+        <div id="awards">
+          <div className="sechead" style={{ marginTop: '44px' }}>
+            <span className="num">03</span>
+            <h2>Awards</h2>
+          </div>
+          <div className="awards">
+            {AWARDS.map((award, i) => (
+              <div key={i} className={`award reveal ${award.photo ? 'withphoto' : ''}`}>
+                {award.photo && (
+                  <div className="aw-ph">
+                    <img src={award.photo} alt="" loading="lazy" style={{ objectPosition: award.pos || 'center' }} />
+                  </div>
                 )}
+                <div className="aw-body">
+                  <div className="wh">{award.w}</div>
+                  <h3>{award.t}</h3>
+                  <p dangerouslySetInnerHTML={{ __html: award.d }} />
+                  {award.link && (
+                    <a className="lk" href={award.link} target="_blank" rel="noopener">
+                      {award.linkLabel} &#8599;
+                    </a>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Education */}
       <section id="education" style={{ paddingBottom: '72px' }}>
         <div className="sechead">
-          <span className="num">03</span>
+          <span className="num">04</span>
           <h2>Education</h2>
         </div>
         <div className="edu reveal">
@@ -253,7 +255,7 @@ export default function Home() {
       {/* Skills */}
       <section id="skills">
         <div className="sechead">
-          <span className="num">04</span>
+          <span className="num">05</span>
           <h2>Skills</h2>
         </div>
         {SKILLS.map((skillGroup, i) => (
