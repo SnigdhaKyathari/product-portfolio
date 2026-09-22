@@ -255,23 +255,30 @@ section {
   grid-row: 2;
   grid-column: 1 / 3;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0;
   background: #fff;
   border-top: 1px solid var(--line);
-  padding: 16px 26px;
+  padding: 0;
 }
 
 .hero-chips .chip {
   flex: 1;
-  min-width: 140px;
   border: none;
+  border-right: 1px solid var(--line);
   margin: 0;
-  padding: 10px 14px;
+  padding: 14px 16px;
   background: #fff;
   border-radius: 0;
   font-size: 10.5px;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-chips .chip:last-child {
+  border-right: none;
 }
 
 .hero-links {
