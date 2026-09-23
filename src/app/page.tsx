@@ -112,35 +112,43 @@ export default function Home() {
                 <div className="cardfoot">
                   <span className="cta">Read case study &#8594;</span>
                   {(p as any).link && (
-                    <a
-                      href={(p as any).link}
-                      target="_blank"
-                      rel="noopener"
+                    <button
+                      type="button"
                       className="cta ghost"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open((p as any).link, '_blank');
+                      }}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
                     >
                       {(p as any).linkLabel} &#8599;
-                    </a>
+                    </button>
                   )}
                   {p.live && (
-                    <a
-                      href={p.live}
-                      target="_blank"
-                      rel="noopener"
+                    <button
+                      type="button"
                       className="cta ghost"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(p.live, '_blank');
+                      }}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
                     >
                       {p.liveLabel || 'Visit site'} &#8599;
-                    </a>
+                    </button>
                   )}
                   {p.video && (
-                    <a
-                      href={`/work/${p.slug}#video`}
+                    <button
+                      type="button"
                       className="cta ghost"
-                      onClick={(e) => e.stopPropagation()}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.location.hash = `${p.slug}#video`;
+                      }}
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 0, font: 'inherit' }}
                     >
                       Demo video &#8599;
-                    </a>
+                    </button>
                   )}
                 </div>
               </div>

@@ -1377,6 +1377,14 @@ video {
     padding: 30px 0 80px;
   }
 
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero .photo {
+    height: 280px;
+  }
+
   .card,
   .job,
   .award.withphoto {
